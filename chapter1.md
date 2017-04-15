@@ -1,8 +1,8 @@
 # What is Node
 
-**Baby don't hurt me**
+> **Baby don't hurt me**
 
-So, you've heard about it, Node.js, the new cool \(ish\) kid in school, but what is Node?
+So, you've heard about it, Node.js, the new cool \(ish\) kid in school, but what exactly is Node?
 
 > Node.js® is a JavaScript runtime built on [Chrome's V8 JavaScript engine](https://developers.google.com/v8/). Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. Node.js' package ecosystem, [npm](https://www.npmjs.com/), is the largest ecosystem of open source libraries in the world.
 >
@@ -16,7 +16,7 @@ When installing Node.js, you usually get a 2x1 offer, as you get two separate pr
 
 ### Node
 
-The main program you'll install is \(unsurprisingly\) the JavaScript _interpreter_, once installed, is pretty straighforward to use, in the same fashion as Python, just open a terminal \(sorry, anonymous Windows user, you'll have to open one this time\) and type:
+The main program you'll install is \(unsurprisingly\) node, the JavaScript _interpreter_, once installed, is pretty straighforward to use, in the same fashion as Python, just open a terminal \(sorry, anonymous Windows user, you'll have to open one this time\) and type:
 
 ```
 $ node
@@ -53,13 +53,9 @@ Hello, World!
 
 Notice how `undefined` is not shown anymore.
 
-While there are several options for the node command, 
-
 ### NPM
 
-
-
-
+The success of Node.js is, in great part, thanks to the _Node Package Manager_. Acting as a combination of a package manager, task runner,
 
 ## About Node \(and JS\) versions
 

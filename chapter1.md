@@ -55,7 +55,17 @@ Notice how `undefined` is not shown anymore.
 
 ### NPM
 
-The success of Node.js is, in great part, thanks to the _Node Package Manager_. Acting as a combination of a package manager, task runner,
+The success of Node.js is, in great part, thanks to the _Node Package Manager_. Acting as a combination of a package manager, task runner, and project metadata, all in one.
+
+While there are other fancy tools that will be discussed in following chapters, for most small/medium sized projects, **npm** \(along with node, a terminal and a text editor\) is all you'll need to manage your project.
+
+The main usage of npm, is a package manager, it allows you to install packages from the npm repository \(https://www.npmjs.com\)
+
+
+
+
+
+More details will be discussed in the chapter [Managing your project](/advanced-topics/managing-your-project.md)
 
 ## About Node \(and JS\) versions
 

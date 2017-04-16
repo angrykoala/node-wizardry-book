@@ -59,9 +59,13 @@ The success of Node.js is, in great part, thanks to the _Node Package Manager_. 
 
 While there are other fancy tools that will be discussed in following chapters, for most small/medium sized projects, **npm** \(along with node, a terminal and a text editor\) is all you'll need to manage your project.
 
-The main usage of npm, is a package manager, it allows you to install packages from the npm repository \(https://www.npmjs.com\)
+The main usage of npm, is as a package manager, it allows you to install packages from the npm repository \([https://www.npmjs.com](https://www.npmjs.com\)\), you can install packages with:
 
+```
+npm install
+```
 
+By default, it will install packages _locally_ to your folder, as a dependency, inside the folder `node-modules`, this allows you to use those packages within your project without affecting the rest of projects you may have. You can also install packages _globally, _allowing you to use them across all projects and execute \(when possible\) from the terminal as any other program.
 
 
 

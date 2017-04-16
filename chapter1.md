@@ -59,19 +59,33 @@ The success of Node.js is, in great part, thanks to the _Node Package Manager_. 
 
 While there are other fancy tools that will be discussed in following chapters, for most small/medium sized projects, **npm** \(along with node, a terminal and a text editor\) is all you'll need to manage your project.
 
-The main usage of npm, is as a package manager, it allows you to install packages from the npm repository \([https://www.npmjs.com](https://www.npmjs.com\)\), you can install packages with:
+The main usage of npm, is as a package manager, it allows you to install packages from the npm repository \([https://www.npmjs.com](https://www.npmjs.com%29\), you can install packages with:
 
 ```
-npm install
+npm install <my-package>
 ```
 
-By default, it will install packages _locally_ to your folder, as a dependency, inside the folder `node-modules`, this allows you to use those packages within your project without affecting the rest of projects you may have. You can also install packages _globally, _allowing you to use them across all projects and execute \(when possible\) from the terminal as any other program.
+By default, it will install packages _locally_ to your folder, as a dependency, inside the folder `node-modules`, this allows you to use those packages within your project without affecting the rest of projects you may have. You can also install packages _globally_, allowing you to use them across all projects and execute \(when possible\) from the terminal as any other program:
 
+```
+npm install -g <my-package>
+```
 
-
-More details will be discussed in the chapter [Managing your project](/advanced-topics/managing-your-project.md)
+More details will be discussed in the chapter [Creating your first project](/creating-your-first-project.md) and [Managing your project](/advanced-topics/managing-your-project.md)
 
 ## About Node \(and JS\) versions
+
+Node.js has been under constant development since its initial release in 2006, with several new versions being published every year since then.
+
+JavaScript, as a language, received some updates lately too, the ECMAScript 5th and 6th version. Those versions are particularly important as not all JavaScript interpreters are up to date, and only some Node.js versions fully implement ES6
+
+Node.js \(and JS\) is, with some exception, retrocompatible, which means that usually a program made for a certain version, will keep working with newer implementations, but not the other way.
+
+
+
+> TODO: add versions and info about them
+
+
 
 
 

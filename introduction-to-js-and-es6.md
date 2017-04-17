@@ -53,6 +53,14 @@ Even if is dynamically typed, JavaScript uses the following types for its variab
 
 * **Symbol**: Introduced in ES6, symbols can be used as keys of an object.
 
+### Let and const
+
+In ES6,  `let` and `const` keywords were added to be used in place of `var` 
+
+* **let** provides the same functionality as `var` however
+
+If your application required wide compatibility \(old browsers-compatible or node &lt;4\) `var` should be used instead. However, for modern js development `let` and `const` are recommended. For this guide we will use `let` and `const` 
+
 ## Data Structures
 
 ### Basic data structures
@@ -102,10 +110,29 @@ for(var i=0;i<100;i++){
 
 However, JS offers alternative versions of for loops to iterate through an object or array:
 
-* for...in loop
-* for...of loop
+**for...in loop**
 
+The for in loop allows to iterate through the properties of an object:
 
+```js
+for (var key in obj) {
+  if (obj.hasOwnProperty(key)) { // Required to ensure that we only iterate in the object properties, and not the parent
+    // obj[key] is the value
+  } 
+}
+```
+
+**for...of loop**
+
+Introduced in ES6, the for...of loop iterated through iterables such as arrays:
+
+```
+var arr=[]
+for (let value of iterable) {
+  value += 1;
+  console.log(value);
+}
+```
 
 **while loop**
 

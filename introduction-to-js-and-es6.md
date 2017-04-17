@@ -34,32 +34,92 @@ It is **not** recommended to use variables without declaring them first with `va
 
 Even if is dynamically typed, JavaScript uses the following types for its variables:
 
-* **Number**: used for integer and float numbers \(`5`, `0`, `-3`, `4.3`\)
-* **String**: used for text and characters \(`"Hello"`, `"a"`, `""`\)
-  * Strings can be delimited with `" "`,`' '` and, in ES6, with ``` ```, which allows _multiline_ strings
-* **Boolean**: either `true` or `false` 
+* **Number**: used for integer and float numbers \(`5`, `0`, `-3`, `4.3`\).
+* **String**: used for text and characters \(`"Hello"`, `"a"`, `""`\).
+  * Strings can be delimited with `" "`,`' '` and, in ES6, with ` `, which allows _multiline_ strings.
+* **Boolean**: either `true` or `false`.
 
-* **Undefined**: used for a non-defined variable \(e.g. `var a;`\)
+* **Undefined**: used for a non-defined variable \(e.g. `var a;`\).
 
-  * It is possible to set a variable to _undefined_ by writing: `var a=undefined` 
+  * It is possible to set a variable to _undefined_ by writing: `var a=undefined`. 
 
-* **Null**: Represents an invalid or non-defined object. While similar to _undefined_, null values must be explicitly set
+* **Null**: Represents an invalid or non-defined object. While similar to _undefined_, null values must be explicitly set.
 
   * To set a variable to null, `var a=null`
 
-* **Object**: \(and arrays\)
+* **Object**: Any non-primitive type is defined as an object \(including classes instances and arrays\), it is usually defined as a pair key-value inside brackets: `{key: value}`
 
-* **Symbol**: Only in ES6, 
+  * `var a={}` will define an empty object.
 
-
-
-## Conditionals and loops
+* **Symbol**: Introduced in ES6, symbols can be used as keys of an object.
 
 ## Data Structures
 
 ### Basic data structures
 
 ### ES6 new data structures
+
+## Conditionals and loops
+
+JavaScript implements conditionals and loops in a similar fashion as C, Java or Python:
+
+**If-else clause**
+
+```js
+if(condition){
+    // do this
+} else if(secondCondition){
+    // do that
+} else{
+    // no conditions met
+}
+```
+
+**Switch clause**
+
+```js
+switch(expression) {
+    case "a":
+        // do Stuff if a
+        break;
+    case "b":
+        // do stuff if b
+        break;
+    default:
+        // if no condition met
+}
+```
+
+**for loop**
+
+The basic implementation of for loops is similar to that found in C or Java:
+
+```js
+for(var i=0;i<100;i++){
+    // do stuff 100 times
+}
+```
+
+However, JS offers alternative versions of for loops to iterate through an object or array:
+
+* for...in loop
+* for...of loop
+
+
+
+**while loop**
+
+While loops \(and do-while\) work exactly as in other languages:
+
+```js
+while(condition){
+    // do stuff
+}
+
+do{
+    // do stuff (at least once)
+} while(condition);
+```
 
 ## Functions
 
@@ -72,6 +132,12 @@ Even if is dynamically typed, JavaScript uses the following types for its variab
 ## Some ES6 functions and methods
 
 ## Introduction to Node.js API
+
+## Error Handling
+
+try..catch
+
+## Common Pitfalls
 
 
 

@@ -17,6 +17,7 @@
 ## Advanced Topics
 
 * [Managing your project](advanced-topics/managing-your-project.md)
+* Promises in JS
 * Package versioning
 * Testing
 

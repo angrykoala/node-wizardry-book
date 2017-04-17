@@ -10,9 +10,9 @@
 
 ## Projects
 
-* Desktop application with Electron
 * [Creating your first project](creating-your-first-project.md)
 * [Chat App with websockets](project-chat-app-with-websockets.md)
+* [Desktop application with Electron](desktop-application-with-electron.md)
 
 ## Advanced Topics
 

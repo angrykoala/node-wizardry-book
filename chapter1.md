@@ -77,15 +77,19 @@ More details will be discussed in the chapter [Creating your first project](/cre
 
 Node.js has been under constant development since its initial release in 2006, with several new versions being published every year since then.
 
-JavaScript, as a language, received some updates lately too, the ECMAScript 5th and 6th version. Those versions are particularly important as not all JavaScript interpreters are up to date, and only some Node.js versions fully implement ES6
+JavaScript, as a language, received some updates lately too, the ECMAScript 5th and 6th version. Those are particularly important as not all JavaScript interpreters are up to date, and only some Node.js versions fully implement ES6
 
 Node.js \(and JS\) is, with some exception, retrocompatible, which means that usually a program made for a certain version, will keep working with newer implementations, but not the other way.
 
+While node received updates regularly, the important versions are \(usually\) the **LTS** versions.
 
 
-> TODO: add versions and info about them
+
+> At the moment of writing this guide, **Node 7.9.0** is the latest version
 
 
+
+LTS Schedule: https://github.com/nodejs/LTS
 
 
 

@@ -55,11 +55,26 @@ Even if is dynamically typed, JavaScript uses the following types for its variab
 
 ### Let and const
 
-In ES6,  `let` and `const` keywords were added to be used in place of `var` 
+In ES6,  `let` and `const` keywords were added to be used in place of `var`
 
-* **let** provides the same functionality as `var` however
+* **let** provides the same functionality as `var` however the scope of the variable is the code block it is defined, instead of the whole function. This avoids some pitfalls that may happen using `var` as let rules are more intuitive.
+* **const** declares a variable that can not be reassigned, this means that for primitive values \(string, number, boolean, null, undefined\) it cannot be modified. Objects, however, can be modified, even if they are constant, but the variable will always reference the same object.
 
-If your application required wide compatibility \(old browsers-compatible or node &lt;4\) `var` should be used instead. However, for modern js development `let` and `const` are recommended. For this guide we will use `let` and `const` 
+```js
+const a="Hello";
+a="Bye"; //Error
+
+const obj={
+    foo: "bar"
+};
+obj.foo="Hello"; // Valid
+
+obj={} // Error
+```
+
+
+
+If your application required wide compatibility \(old browsers-compatible or node &lt;4\) `var` should be used instead. However, for modern js development `let` and `const` are recommended. For this guide we will use `let` and `const`.
 
 ## Data Structures
 

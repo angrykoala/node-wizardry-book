@@ -2,8 +2,6 @@
 
 This book aims to cover the basics of JavaScript development using Node.js with modern development tools.
 
-
-
 ## How to read
 
 This book is divided in 3 parts:
@@ -16,7 +14,7 @@ So, basically, the first part \(and the first projects\) serves as an introducti
 
 > "The only way to learn programming, is to program"
 >
->  - **Someone who never got to management**
+>   - **Someone who never got to upper management**
 
 
 

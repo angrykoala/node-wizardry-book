@@ -2,7 +2,7 @@
 
 > Remember: Java is to JavaScript what Car is to Carpet
 
-JavaScript is a \(relatively\) easy-to-learn language, with a syntax that result familiar to most programmers, as is "\_similar" \_to C++, Java, or python. Originally intended for browser-side scripting, there are a big amount of tutorials and documentation to start programming in this messy and lovely language.
+JavaScript is a \(relatively\) easy-to-learn language, with a syntax that result familiar to most programmers, as is "similar" to C++, Java, or python. Originally intended for browser-side scripting, there are a big amount of tutorials and documentation to start programming in this messy and lovely language.
 
 In this small introduction, however, I will quickly introduce the basics, skipping the references to browser-side programming as are not needed for node.js. I will also introduce the latest features in JavaScript \(ES6\) that are usually left out in old guides or browser-side programming \(aaah, lovely browser-compatibility\). With node.js we can use all the latests js features without fear, as long as our node.js is up to date.
 
@@ -71,8 +71,6 @@ obj.foo="Hello"; // Valid
 
 obj={} // Error
 ```
-
-
 
 If your application required wide compatibility \(old browsers-compatible or node &lt;4\) `var` should be used instead. However, for modern js development `let` and `const` are recommended. For this guide we will use `let` and `const`.
 

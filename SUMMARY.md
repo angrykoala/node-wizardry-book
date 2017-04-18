@@ -3,10 +3,11 @@
 ## Introduction
 
 * [Introduction](README.md)
-* [What is Node](chapter1.md)
-* [Introduction to JS and ES6](introduction-to-js-and-es6.md)
 
 ## Basic Topics
+
+* [What is Node](chapter1.md)
+* [Introduction to JS and ES6](introduction-to-js-and-es6.md)
 
 ## Projects
 
@@ -16,6 +17,7 @@
 
 ## Advanced Topics
 
+* Working with several node versions
 * [Managing your project](advanced-topics/managing-your-project.md)
 * Promises in JS
 * Package versioning

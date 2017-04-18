@@ -8,11 +8,15 @@ So, you've heard about it, Node.js, the new cool \(ish\) kid in school, but what
 >
 > **nodejs.org**
 
-So, in a nutshell, Node.js is a fancy JavaScript interpreter with C++/OS bindings through the [Node API](https://nodejs.org/api/) and a kick-ass package manager glued together. This allows you to execute your lovely JS code in your computer \(just like if you were using Python or Ruby\) without a Browser \(or a DOM tree\). The API allows you to access to the usual OS features, such as read-write files with JavaScript. Before embarking in the beauties of Node, it is highly recommended to know a bit of JavaScript.
+So, in a nutshell, Node.js is a fancy JavaScript interpreter with C++/OS bindings through the [Node API](https://nodejs.org/api/) and a kick-ass package manager glued together. 
+
+This environment allows you to execute your "lovely" JS code in your computer \(just like if you were using Python or Ruby\) without a Browser \(or a DOM tree\). The API allows you to access to the usual OS features, such as reading-writiting files with JavaScript. 
+
+Before embarking in the beauties of Node, it is highly recommended to know a bit of JavaScript.
 
 ## Two for the price of one
 
-When installing Node.js, you usually get a 2x1 offer, as you get two separate programs which, along with your favourite text editor and a terminal, will compose your development environtment, no nasty IDEs or weird libraries.
+When installing Node.js, you usually get a 2x1 offer, as you get two separate programs which, along with your favourite text editor and a terminal, will compose your development environtment, no nasty IDE or weird libraries.
 
 ### Node
 
@@ -77,19 +81,20 @@ More details will be discussed in the chapter [Creating your first project](/cre
 
 Node.js has been under constant development since its initial release in 2006, with several new versions being published every year since then.
 
-JavaScript, as a language, received some updates lately too, the ECMAScript 5th and 6th version. Those are particularly important as not all JavaScript interpreters are up to date, and only some Node.js versions fully implement ES6
+JavaScript, as a language, received some updates lately too, the ECMAScript 5th and 6th version. It is important to note that not every JavaScript interpreters is up to date, and only some Node.js versions implement ES6.
 
 Node.js \(and JS\) is, with some exception, retrocompatible, which means that usually a program made for a certain version, will keep working with newer implementations, but not the other way.
 
-While node received updates regularly, the important versions are \(usually\) the **LTS** versions.
+While node receives updates regularly, the important versions are \(usually\) the **LTS** versions. It is recommended to use one of these unless you want the latests features.
 
+While using that latests LTS \(Node 6 at the moment\) should be a good option for most development projects, you should be aware of the following node versions:
 
+* **0.12**: While no longer under maintenance \(and still a beta version\) node 0.12 is still heavily used, and a lot of packages are developed used this version. ES6 is not fully supported in this version
+* **4.x**: This is the first official release of node and implements most of the ES6 functionality. Most app written with node 7 will work down to this version.
+  * The _"jump"_ between node 0.12 and 4.x is due to a merge between the projects node.js and io.js, to avoid confusion and versioning problem between those, node was released with 4.x directly
+* **6.x**: This version \(the latest LTS at the moment of writing this\) implements more ES6 features and provides improvements in performance.
 
-> At the moment of writing this guide, **Node 7.9.0** is the latest version
+> At the moment of writing this guide, **Node 7.9.0** is the latest version, for this guide we will assume **Node 6** is used
 
-
-
-LTS Schedule: https://github.com/nodejs/LTS
-
-
+You can check the official LTS Schedule here: [https://github.com/nodejs/LTS](https://github.com/nodejs/LTS)
 

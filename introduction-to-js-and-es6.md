@@ -173,7 +173,7 @@ As you can see, maps are similar to a native objects \(in fact, object have been
 
 > **Pro Tip:** As maps are objects, using _square brackets_ in a map **won't** throw an error, in fact, the data will be stored as in any other object, but it **won't** be stored as part of the map, but as a separate key. It is heavily recommended **not** to use square brackets at all with maps.
 
-Set
+_**Set**_
 
 Sets allows you to store unique values. It is different of an array as if the same value is added twice, it will only store one instance.
 
@@ -317,7 +317,6 @@ let f2=function(){
     return "B";
 }
 f2(); // "B"
-
 ```
 
 As you can see, it is possible to creare _anonymous_ functions with _function\(\)_ and assign one or more variables to them. This allows to some interesting behaviours that we will discuss in a moment.
@@ -331,7 +330,7 @@ let ford={
     panic: function(){
         return "don't";
     }
-    
+
 ford.name; // "Ford"
 ford.panic(); // "don't"
 ```
@@ -339,7 +338,7 @@ ford.panic(); // "don't"
 Hey, but that looks a lot like a class! Is that funny little voice in your head that. As we will discuss later, JS provides a very specific of dealing with OOP, which is, partialy solved with implementations similar to the one above.
 
 > **Pro Tip:** As functions are objects, you can actually add other members to it `getUltimateAnswer.lifeUniverseEverything=42` However, it may lead to confussion.
-
+>
 > **Pro Tip 2:** Most of these pro tips are actually things you shouldn't do.
 
 ### The Magic of Callbacks
@@ -348,13 +347,9 @@ Hey, but that looks a lot like a class! Is that funny little voice in your head 
 
 ### Arrow functions
 
-
-
 ## The Treachery of Classes
 
 > Ceci n'est pas une classe
-
-
 
 ## Some ES6 functions and methods
 

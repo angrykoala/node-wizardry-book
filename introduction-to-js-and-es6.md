@@ -154,7 +154,7 @@ Arrays also provide a lot of methods to manipulate the array, you can check them
 
 ES6 introduced 2 more data structures as built-in objects: **map** and **set**, as well as the _weak_ key versions: **weakMap** and **weakSet**. While these structures are not as versatile as the primitive structures, its use is recommended for the specific cases that are designed for, as provide specific functionality for those cases, and usually an improved performance, leading to a simpler and more efficient code.
 
-**Map**
+_**Map**_
 
 A map is a data structure that stored elements assigning them to an unique key.
 
@@ -173,7 +173,7 @@ As you can see, maps are similar to a native objects \(in fact, object have been
 
 > **Pro Tip:** As maps are objects, using _square brackets_ in a map **won't** throw an error, in fact, the data will be stored as in any other object, but it **won't** be stored as part of the map, but as a separate key. It is heavily recommended **not** to use square brackets at all with maps.
 
-**Set**
+Set
 
 Sets allows you to store unique values. It is different of an array as if the same value is added twice, it will only store one instance.
 
@@ -252,7 +252,9 @@ The for in loop allows to iterate through the properties of an object:
 
 ```js
 for (var key in obj) {
-  if (obj.hasOwnProperty(key)) { // Required to ensure that we only iterate in the object properties, and not the parent
+  if (obj.hasOwnProperty(key)) {
+    // This if is required to ensure that we only iterate in the object properties, and not the parent
+
     // obj[key] is the value
   } 
 }
@@ -286,11 +288,73 @@ do{
 
 ## Functions
 
-### Scopes
+> No, here we are not going to talk about functional programming
+
+Functions is one of the most interesting features of js \(yes, functions, I know it doesn't sound very fancy\).
+
+To declare a function in JavaScript we use the following syntax:
+
+```js
+function getUltimateAnswer(){
+    return 42;
+}
+
+getUltimateAnswer(); // 42
+```
+
+As you can see, it is pretty straightforward. Now you may be thinking. What's so great about this?.
+
+In a nutshell, the most interesting fact about JS functions is that they are _object_ \(throws confetti\), which means that they can be used as any other variable:
+
+```js
+function funcA(){
+    return "A";
+}
+let f1=funcA;
+f1(); // "A"
+
+let f2=function(){
+    return "B";
+}
+f2(); // "B"
+
+```
+
+As you can see, it is possible to creare _anonymous_ functions with _function\(\)_ and assign one or more variables to them. This allows to some interesting behaviours that we will discuss in a moment.
+
+Functions, as any other object, can be attached to an object as a value:
+
+```js
+let ford={
+    name: "Ford",
+    items: ["Towel", "Guide"],
+    panic: function(){
+        return "don't";
+    }
+    
+ford.name; // "Ford"
+ford.panic(); // "don't"
+```
+
+Hey, but that looks a lot like a class! Is that funny little voice in your head that. As we will discuss later, JS provides a very specific of dealing with OOP, which is, partialy solved with implementations similar to the one above.
+
+> **Pro Tip:** As functions are objects, you can actually add other members to it `getUltimateAnswer.lifeUniverseEverything=42` However, it may lead to confussion.
+
+> **Pro Tip 2:** Most of these pro tips are actually things you shouldn't do.
 
 ### The Magic of Callbacks
 
+### Scopes
+
+### Arrow functions
+
+
+
 ## The Treachery of Classes
+
+> Ceci n'est pas une classe
+
+
 
 ## Some ES6 functions and methods
 

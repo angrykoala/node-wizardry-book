@@ -23,4 +23,5 @@
 * Package versioning
 * Testing
 * [JavaScript "Features"](advanced-topics/javascript-features.md)
+* [JS Performance and Garbage Collector](advanced-topics/js-performance-and-garbage-collector.md)
 

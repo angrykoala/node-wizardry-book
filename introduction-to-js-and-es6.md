@@ -6,6 +6,8 @@ JavaScript is a \(relatively\) easy-to-learn language, with a syntax that result
 
 In this small introduction, however, I will quickly introduce the basics, skipping the references to browser-side programming as are not needed for node.js. I will also introduce the latest features in JavaScript \(ES6\) that are usually left out in old guides or browser-side programming \(aaah, lovely browser-compatibility\). With node.js we can use all the latests js features without fear, as long as our node.js is up to date.
 
+For a full guide on JS programming, use explicit JS programming tutorials/books, as a lot of thing are not included in this introduction.
+
 You can tests all the snippets here by writing them on the node REPL.
 
 ## Variables
@@ -107,7 +109,7 @@ All non-primitive types are defined as objects \(including arrays and functions\
 
 _**Array**_
 
-Arrays are represented using _square brackets _`[ ]`and each value is separated by a _comma. \_Arrays are commonly used as \_lists_ or _vectors_. For example:
+Arrays are represented using _square brackets _`[ ]`and each value is separated by a _comma. Arrays are commonly used as lists_ or _vectors_. For example:
 
 ```js
 let characters = ["Zaphod", "Ford", "Arthur", robot, 42];
@@ -142,13 +144,64 @@ races.length; // 1
 
 Arrays are usually represented as objects with numbers as key \(or, particularly, stringified numbers\). However, most interpreters make a lot of performance optimizations on arrays, making them usually faster than objects for adding/removing elements to the end and radom/iterative access.
 
-Arrays also provide a lot of methods to manipulate the array, you can check them on [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global\_Objects/Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+Arrays also provide a lot of methods to manipulate the array, you can check them on [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global\_Objects/Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array).
 
-> **Pro Tip:** As arrays are also objects, you can use anything as index, but it is heavily **not** recommended, if you want and object, use an object
-
+> **Pro Tip:** As arrays are also objects, you can use anything as index, but it is heavily **not** recommended, if you want and object, use an object.
+>
 > **Pro Tip 2:** You can set any index of the array at any moment \(e.g. `characters[40] = "Deep Thought"` , it will fill the array with `undefined` values up to that point, making it's length equal the latest index used. This is **not** recommended either unless an array full of undefined is you desired result.
 
 ### ES6 new data structures
+
+ES6 introduced 2 more data structures as built-in objects: **map** and **set**, as well as the _weak_ key versions: **weakMap** and **weakSet**. While these structures are not as versatile as the primitive structures, its use is recommended for the specific cases that are designed for, as provide specific functionality for those cases, and usually an improved performance, leading to a simpler and more efficient code.
+
+**Map**
+
+A map is a data structure that stored elements assigning them to an unique key.
+
+```js
+let cast=new Map();
+map.set("main","Arthur");
+map.set("sidekick", "Ford");
+map.get("main"); // Arthur
+```
+
+As you can see, maps are similar to a native objects \(in fact, object have been traditionally used as Maps structures\) but using `set` and `get` instead of \_square brackets. \_However, maps have some key differences with objects:
+
+* The key can be anything, including **null**, **undefined **and **functions**.
+* Maps provides a `size`variable and are iterable, like arrays.
+* Map doesn't contain default keys.
+
+> **Pro Tip:** As maps are objects, using _square brackets_ in a map **won't** throw an error, in fact, the data will be stored as in any other object, but it **won't** be stored as part of the map, but as a separate key. It is heavily recommended **not** to use square brackets at all with maps.
+
+**Set**
+
+Sets allows you to store unique values. It is different of an array as if the same value is added twice, it will only store one instance.
+
+```js
+let spaceships=new Set();
+spaceships.add("Heart of Gold");
+spaceships.add("Vogon Constructor");
+spaceships.size(); // 2
+
+spaceships.has("Heart of Gold"); // true
+spaceships.has("Tardis"); // false
+spaceships.add("Heart of Gold");
+spaceships.size(); // 2
+
+spaceships.delete("Hearth of Gold"); // true
+spaceships.size(); // 1
+spaceships.delete("Tardis"); // false
+```
+
+As you can see, sets are useful to count or remove repeated elements.
+
+> **Pro Tip:** When adding objects, equity is defined by the object reference, so a Set may store different objects that have the same members, but not multiple references to the same object.
+
+**WeakMap** and **WeakSet**
+
+These 2 structures behave almost exactly as the previous two, however they store the object references as _weak_ references, which mean that the references will be removed by the garbage collector if there are not more references to those \(Garbage collection and performance will be further discussed in [JS Performance and Garbage Collector](/advanced-topics/js-performance-and-garbage-collector.md).
+
+Having weak references is particularly useful when you want to handle loose structures with a lot of living objects without handling memory allocation. However, you cannot reliably know the size of the structures when using weak references.
 
 ## Conditionals and loops
 

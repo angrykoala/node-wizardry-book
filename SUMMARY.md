@@ -3,6 +3,7 @@
 ## Introduction
 
 * [Introduction](README.md)
+* [Bibliography](bibliography.md)
 
 ## Basic Topics
 

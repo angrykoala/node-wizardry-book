@@ -22,4 +22,5 @@
 * Promises in JS
 * Package versioning
 * Testing
+* [JavaScript "Features"](advanced-topics/javascript-features.md)
 

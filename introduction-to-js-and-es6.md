@@ -6,7 +6,7 @@ JavaScript is a \(relatively\) easy-to-learn language, with a syntax that result
 
 In this small introduction, however, I will quickly introduce the basics, skipping the references to browser-side programming as are not needed for node.js. I will also introduce the latest features in JavaScript \(ES6\) that are usually left out in old guides or browser-side programming \(aaah, lovely browser-compatibility\). With node.js we can use all the latests js features without fear, as long as our node.js is up to date.
 
-You can tests all the snippets here by writing them on the node REPL
+You can tests all the snippets here by writing them on the node REPL.
 
 ## Variables
 
@@ -76,7 +76,77 @@ If your application required wide compatibility \(old browsers-compatible or nod
 
 ## Data Structures
 
+JavaScript is a particularly simple language when it comes to data structures, prior to ES6 you only had 2 options when it comes to store your data \(and, one is, in fact, implemented in the other\). Despite the few options, those structures are incredibly versatile, allowing to manipulate data in an extremely easy way.
+
 ### Basic data structures
+
+The two "primitive" data structures of JavaScript are:
+
+* **Objects: **
+* **Arrays**:
+
+_**Objects**_
+
+"Hi, I'm an object. You may remember me from such chapters as _variable types_._ \_An object is a set of pairs key-values, it is used mainly to represent \_classes instances, map structures \_or just to glue several things together. It is describe between \_brackets _`{ }`, each pair is represented as `key: value`and each pair is separated by a _comma_. For example:
+
+```js
+let robot= {
+    name: "Marvin",
+    age: 124,
+    race: "Paranoid Robot"
+}
+```
+
+The **key** must be an _string_ \(or _Symbol_\), the **value** can be anything, including _functions_ or other objects \(including itself\).
+
+Object elements can be accesses either with `.` \(`robot.name`\) or using the _square brackets_ \(`robot["name"]`\), trying to access to an non-defined member \(e.g `robot.love` will return `undefined)`
+
+> **Pro Tip**: Be aware that while accessing an undefined member will not be a problem, trying to access to a member of an `undefined` or `null` variable will throw an error \(e.g. `robot.love.me`\)
+
+All non-primitive types are defined as objects \(including arrays and functions\), and any class you create will instance objects \(classes will be reviewed later\). An object can also be used as a _map_ data structure. However, ES6 also provides a specific data structure for this case, we will see it later.
+
+_**Array**_
+
+Arrays are represented using _square brackets _`[ ]`and each value is separated by a _comma. \_Arrays are commonly used as \_lists_ or _vectors_. For example:
+
+```js
+let characters = ["Zaphod", "Ford", "Arthur", robot, 42];
+```
+
+As you can see, an array can store any type, and mix types \(this includes _objects_, _functions_ and, _itself_\)
+
+To access/modify elements, you can use \_square brackets \_with a number:
+
+```js
+characters[0]; // "Zaphod"
+characters[1]; // "Ford"
+characters[10]; // undefined
+characters[-1]; // undefined
+```
+
+To add an element to the end of the array you can use the method `push`to add an element to the end of the array. The variable `length` returns the size of the array:
+
+```js
+let races=["Humans"];
+races.length; // 1
+races.push("Vogons");
+races.length; // 2
+```
+
+The method `pop` will remove and return the last element of the array:
+
+```js
+races.pop(); // "Vogons"
+races.length; // 1
+```
+
+Arrays are usually represented as objects with numbers as key \(or, particularly, stringified numbers\). However, most interpreters make a lot of performance optimizations on arrays, making them usually faster than objects for adding/removing elements to the end and radom/iterative access.
+
+Arrays also provide a lot of methods to manipulate the array, you can check them on [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global\_Objects/Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+
+> **Pro Tip:** As arrays are also objects, you can use anything as index, but it is heavily **not** recommended, if you want and object, use an object
+
+> **Pro Tip 2:** You can set any index of the array at any moment \(e.g. `characters[40] = "Deep Thought"` , it will fill the array with `undefined` values up to that point, making it's length equal the latest index used. This is **not** recommended either unless an array full of undefined is you desired result.
 
 ### ES6 new data structures
 

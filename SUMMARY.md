@@ -15,6 +15,7 @@
 * [Creating your first project](creating-your-first-project.md)
 * [Chat App with websockets](project-chat-app-with-websockets.md)
 * [Desktop application with Electron](desktop-application-with-electron.md)
+* Let's write a proper server
 
 ## Advanced Topics
 
@@ -25,4 +26,5 @@
 * Testing
 * [JavaScript "Features"](advanced-topics/javascript-features.md)
 * [JS Performance and Garbage Collector](advanced-topics/js-performance-and-garbage-collector.md)
+* Node.js development using Git
 

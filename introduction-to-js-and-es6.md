@@ -345,7 +345,7 @@ Hey, but that looks a lot like a class! Is that funny little voice in your head 
 
 As mentioned before, functions can be handled as variables, and can be assigned. This variable, like any other variable, can be passed to a function as a parameter, then, that function can call the function passed as a parameter. This is a _callback_ \(epic music\).
 
-```
+```js
 function panic(){
     return "Panic!";
 }
@@ -401,7 +401,7 @@ readFile("File2",onFinish);
 
 In that example, we will start reading both files roughly at the same time, and when any of those is finished, _onFinish_ will be called. This means that _onFinish_ will be called twice.
 
-In a classic, on thread secuantial fashion, first File1 will be loaded, and after that File2 will start loading. With this approach, if File1 is extremely large, while File2 is small, File2 will finish before and we will be able to start processing _asap_. This is particularly convenient, not only for reading files, but for example, handling users requests. We don't want a simple request to be blocked until another, potentially larger and slower, request is finished.
+In a classic, one secuential thread fashion, first File1 will be loaded, and after that File2 will start loading. With this approach, if File1 is extremely large, while File2 is small, File2 will finish before and we will be able to start processing _asap_. This is particularly convenient, not only for reading files, but for example, handling users requests. We don't want a simple request to be blocked until another, potentially larger and slower, request is finished.
 
 To solve this problem, in most other languages, multithreading is used. With a different thread per request. This not only causes overhead, but it also overcomplicates the code in most cases. Whith JS non-blocking I/O, any multithread used is transparent, and with a few callbacks I/O can be handled in an efficient way.
 
@@ -409,7 +409,37 @@ So, in a nutshell: "_Node.js is cool because it does weird async stuff"._
 
 ### Scopes
 
-Scopes is one of the main _"gotcha" of JavaScript. _While they may posses strange and mystical behavious, usually are part of the things that make JS dynamic and fast to write. While doesn't seem useful to dive in how scopes work in this quick guide, It is important to look a few examples of how scopes work while using callbacks.
+Scopes is one of the main "_gotcha_" of JavaScript. While they may posses strange and mystical behavious, usually are part of the things that make JS dynamic and fast to write. While doesn't seem useful to dive in how scopes work in this quick guide, It is important to look a few examples of how scopes work while using callbacks.
+
+Lets take the following example:
+
+```js
+function awesomeTask(){
+    let greetings="Hello World";
+    setTimeout(function(){
+        console.log(greetings); // Hello World
+    },1000);
+}
+```
+
+In this snippet, as you can see we are using setTimeout as in the examples before. You can see that instead of declaring a function, and passing it as a callback, we are declaring an _anonymous_ function directly in the parameters. This callback will be executed after a second due to the setTimeout. But it's doing a weird thing, it is trying to access a variable \(`greetings`\) that is outside the function. This is possible due to js scope. A function can access any variable of its scope, in this case, the function is created as part of the _awesomeTask_ scope.
+
+If we try to extract that function, and declare it out of _awesomeTask_:
+
+```js
+function myCallback(){
+    console.log(greetings);
+}
+
+function awesomeTask(){
+    let greetings="Hello World";
+    setTimeout(myCallback,1000);
+}
+```
+
+
+
+
 
 > Remember the difference between **var** and **let**?
 

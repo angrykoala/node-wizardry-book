@@ -409,7 +409,7 @@ So, in a nutshell: "_Node.js is cool because it does weird async stuff"._
 
 ### Scopes
 
-Scopes is one of the main _"gotcha" _of JavaScript. While they may posses strange and mystical behavious, usually are part of the things that make JS _dynamic_ and fast to write. While doesn't seem useful to dive in how scopes work in this quick guide, It is important to look a few examples of how scopes work while using callbacks.
+Scopes is one of the main _"gotcha" of JavaScript. While they may posses strange and mystical behavious, usually are part of the things that make JS dynamic_ and fast to write. While doesn't seem useful to dive in how scopes work in this quick guide, It is important to look a few examples of how scopes work while using callbacks.
 
 
 
@@ -418,8 +418,6 @@ Scopes is one of the main _"gotcha" _of JavaScript. While they may posses strang
 
 
 > Remember the difference between **var** and **let**?
-
-
 
 ### Arrow functions
 

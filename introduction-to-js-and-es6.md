@@ -165,7 +165,7 @@ map.set("sidekick", "Ford");
 map.get("main"); // Arthur
 ```
 
-As you can see, maps are similar to a native objects \(in fact, object have been traditionally used as Maps structures\) but using `set` and `get` instead of \_square brackets. \_However, maps have some key differences with objects:
+As you can see, maps are similar to a native objects \(in fact, object have been traditionally used as Maps structures\) but using `set` and `get` instead of _square brackets_. However, maps have some key differences with objects:
 
 * The key can be anything, including **null**, **undefined **and **functions**.
 * Maps provides a `size`variable and are iterable, like arrays.
@@ -367,7 +367,7 @@ The answer, of course, is the asyncronous behaviour of JavaScript. Remember the 
 
 For those that already worked with JavaScript using JQuery, or the classic setTimeout, callbacks may be a weird quirk of the language that sometimes must be used. However, because of how Node.js API is made \(you hear a whisper in the darkness "non-blocking I/O"\) and how internally works, callbacks are constanly needed.
 
-I will not bore you anymore with "_Node.js is cool because it does weird async stuff" _anymore, just keep in mind that studying is important, but callbacks are _importanter._
+I will not bore you anymore with "_Node.js is cool because it does weird async stuff" \_anymore, just keep in mind that studying is important, but callbacks are \_importanter._
 
 To understand callbacks a bit better, lets write an example with the plain old javascript, without Node.js API:
 
@@ -382,7 +382,7 @@ console.log("The dolphin said");
 
 `setTimeout` is a JS built-in function that executes the callback after the given time \(in ms\) pass. In this case, it will execute onFinish after one second.
 
-Intuitively, you may think that setTimeout will wait 1 second,  _"So Long, and Thanks for All the Fish" _will be logged, and afterwards, _"The dolphin said"_. However, if you execute the example you'll see that "_The dolphin said"_ is logged inmediatly, and after 1 second, the other message is shown.
+Intuitively, you may think that setTimeout will wait 1 second,  _"So Long, and Thanks for All the Fish" \_will be logged, and afterwards, _"The dolphin said"_. However, if you execute the example you'll see that "\_The dolphin said"_ is logged inmediatly, and after 1 second, the other message is shown.
 
 This is due to the async nature of JavaScript \(Now your mouth should be open as you find yourself in a new state of consciousness above the rest of the mortals, among the gods that left the cavern before you\). Well, maybe it is not such a surprise, but is a cool thing.
 
@@ -408,6 +408,18 @@ To solve this problem, in most other languages, multithreading is used. With a d
 So, in a nutshell: "_Node.js is cool because it does weird async stuff"._
 
 ### Scopes
+
+Scopes is one of the main _"gotcha" _of JavaScript. While they may posses strange and mystical behavious, usually are part of the things that make JS _dynamic_ and fast to write. While doesn't seem useful to dive in how scopes work in this quick guide, It is important to look a few examples of how scopes work while using callbacks.
+
+
+
+
+
+
+
+> Remember the difference between **var** and **let**?
+
+
 
 ### Arrow functions
 

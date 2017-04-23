@@ -7,15 +7,15 @@
 
 ## Basic Topics
 
-* [What is Node](chapter1.md)
-* [Introduction to JS and ES6](introduction-to-js-and-es6.md)
+* [What is Node](basic-topics/what-is-node.md)
+* [Introduction to JS and ES6](basic-topics/introduction-to-js-and-es6.md)
 * Writing JS with Node
 
 ## Projects
 
-* [Creating your first project](creating-your-first-project.md)
-* [Chat App with websockets](project-chat-app-with-websockets.md)
-* [Desktop application with Electron](desktop-application-with-electron.md)
+* [Creating your first project](projects/creating-your-first-project.md)
+* [Chat App with websockets](projects/chat-app-with-websockets.md)
+* [Desktop application with Electron](projects/desktop-application-with-electron.md)
 * Let's write a proper server
 
 ## Advanced Topics

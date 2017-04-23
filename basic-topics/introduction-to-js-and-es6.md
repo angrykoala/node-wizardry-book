@@ -89,7 +89,7 @@ The two "primitive" data structures of JavaScript are:
 
 _**Objects**_
 
-"Hi, I'm an object. You may remember me from such chapters as _variable types_._ \_An object is a set of pairs key-values, it is used mainly to represent \_classes instances, map structures \_or just to glue several things together. It is describe between \_brackets _`{ }`, each pair is represented as `key: value`and each pair is separated by a _comma_. For example:
+"Hi, I'm an object. You may remember me from such chapters as _variable types_._ \_An object is a set of pairs key-values, it is used mainly to represent \_classes instances, map structures \_or just to glue several things together. It is describe between \_brackets _`{ }`, each pair is represented as `key: value` and each pair is separated by a _comma_. For example:
 
 ```js
 let robot= {
@@ -330,6 +330,7 @@ let ford={
     panic: function(){
         return "don't";
     }
+}
 
 ford.name; // "Ford"
 ford.panic(); // "don't"
@@ -572,7 +573,58 @@ Which is as intuitive as writing assembly with unicode characters including emoj
 
 ### Classes and the Scope
 
-Classes introduced a whole new level of scoping problems. In a class you would use `this` to access other members
+Classes introduced a whole new level of scoping problems. In a class you would use `this` to access other members. However, `this` is not part of the scope inside a callback:
+
+```js
+class Hobbit{
+    //....
+    takeBreakfast(){
+        this.eat();
+        setTimeout(function(){
+            this.takeSecondBreakfast(); //this is undefined
+        },1000);
+    }
+    
+    takeSecondBreakfast(){
+        this.eat();
+    }
+}
+```
+Note that for this example we didn't use the _arrow function_ (`=>`).
+
+To solve this problem, there are 3 approaches:
+
+We can save the function in a variable, before the callback, making it part of the scope:
+```js
+takeBreakfast(){
+    this.eat();
+    let secondBreakfast=this.takeSecondBreakfast;
+    setTimeout(function(){
+        secondBreakfast();
+    },1000);
+}
+```
+
+We can also use `.bind`, which allows you to bind variables to the scope of a function:
+```js
+takeBreakfast(){
+    this.eat();
+    setTimeout(function(){
+        this.takeSecondBreakfast(); // this exists because of the .bind
+    }.bind(this),1000);
+}
+```
+
+However, these two options are quite _"hacky"_, and while they are still used (mainly for compatibility), the third option, the _arrow function_, solves the problem, as an arrow function automatically binds _this_:
+```js
+takeBreakfast(){
+    this.eat();
+    setTimeout(()=>{
+        this.takeSecondBreakfast(); //this is defined as part of the arrow-function callback
+    },1000);
+}
+```
+As you can see, this is an example on why the arrow function exists (not only as a visual simplification for callbacks).
 
 ### Static Methods
 
@@ -585,6 +637,3 @@ Classes introduced a whole new level of scoping problems. In a class you would u
 try..catch
 
 ## Common Pitfalls
-
-
-

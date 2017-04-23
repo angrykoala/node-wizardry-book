@@ -9,6 +9,7 @@
 
 * [What is Node](chapter1.md)
 * [Introduction to JS and ES6](introduction-to-js-and-es6.md)
+* Writing JS with Node
 
 ## Projects
 

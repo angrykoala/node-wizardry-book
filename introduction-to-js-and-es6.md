@@ -304,7 +304,7 @@ getUltimateAnswer(); // 42
 
 As you can see, it is pretty straightforward. Now you may be thinking. What's so great about this?.
 
-In a nutshell, the most interesting fact about JS functions is that they are _object_ \(throws confetti\), which means that they can be used as any other variable:
+In a nutshell, the most interesting fact about JS functions is that they are _objects_ \(throws confetti\), which means that they can be used as any other variable:
 
 ```js
 function funcA(){
@@ -337,9 +337,19 @@ ford.panic(); // "don't"
 
 Hey, but that looks a lot like a class! Is that funny little voice in your head that. As we will discuss later, JS provides a very specific of dealing with OOP, which is, partialy solved with implementations similar to the one above.
 
-> **Pro Tip:** As functions are objects, you can actually add other members to it `getUltimateAnswer.lifeUniverseEverything=42` However, it may lead to confussion.
+> **Pro Tip 1:** As functions are objects, you can actually add other members to it `getUltimateAnswer.lifeUniverseEverything=42` However, it may lead to confussion.
 >
 > **Pro Tip 2:** Most of these pro tips are actually things you shouldn't do.
+
+### Function parameters overloading
+
+JS doesn't support function overloading \(multiple functions with the same name but different parameters\).
+
+
+
+> TODO: finish this
+
+
 
 ### The Magic of Callbacks
 
@@ -433,21 +443,138 @@ function myCallback(){
 
 function awesomeTask(){
     let greetings="Hello World";
-    setTimeout(myCallback,1000);
+    setTimeout(myCallback,1000); // ReferenceError
 }
 ```
 
-
-
-
+In this case, greetings is not define. As greetings is not in the scope of _myCallback_. As you can see, scopes depends on where are defined variables and code blocks. It is extremely important when it comes to work with callbacks. This is not everything when it comes to scopes, and we will see more of them.
 
 > Remember the difference between **var** and **let**?
 
 ### Arrow functions
 
+As we saw, functions can be declared of different ways. In ES6 a new way of declaring _anonymous_ functions was implemented. The _arrow functions_.
+
+```js
+setTimeout(()=>{
+    console.log("Timeout");
+    },1000);
+```
+
+Arrow functions where added with two small \(but important\) features respect traditional anonymous functions.
+
+* More compact syntax: While it may seem of little importance, when it comes to declare callbacks \(and callbacks in callbacks\)  compact syntax greatly improves readability.
+* Maybe, the most interesting feature is how Arrow functions bind the `this`scope \(we will come back to this in the following section\).
+
+Arrow functions also provide an alternative syntax for only returning variables:
+
+```js
+()=> "Hello"; //Equivalent to ()=>{return "hello"}
+//With one parameter is also possible:
+name=>"Hello "+name;
+```
+
+These, again, are sugar syntax to reduce verbosity and make callbacks more compact. While arrow functions are not necessary \(and only compatible with ES6\), for this guide we will use that syntax.
+
 ## The Treachery of Classes
 
 > Ceci n'est pas une classe
+
+Let's start this section by looking to a simple class as an example:
+
+```js
+class Orc{
+    constructor(name){
+        this.name=name;
+    }
+    
+    greet(){
+        return "Urhgz";
+    }
+    
+    getName(){
+        return this.name;
+    }   
+}
+
+
+let azog=new Orc("Azog");
+azog.greet(); //"Urhgz"
+```
+
+As you can see, classes are pretty straightforward... Except they aren't classes at all.
+
+JavaScript is, in fact, an Object-Oriented language without classes. It is what is called a prototype-based language. If you come from an older version of JavaScript you may notice a completely different syntax:
+
+```js
+function Orc(name){
+    this.name=name;
+}
+
+Orc.prototype.greet=function(){
+    return "Urhgz";
+}
+
+Orc.prototype.getName=function(){
+    return this.name;
+}  
+```
+
+As you can see, this is an extremely more verbose and complex syntax \(and it get worse with inheritance\). Again, ES6 gave a sugar syntax \(`class`keyword\) that greatly increases readability. However, is good to know that it is still a sugar-syntax, so classes are, in fact, `functions`and the `new` keyword creates an Object, using the function as some kind of constructor. The prototype chain defines the "parent" methods and attributes. For this guide we will, again, use the most modern syntax.
+
+It is important to note that the instantiation of a class is simple js object with the attributes and methods defined in the class. However, this means that any attribute and method can be redefined after creating the object \(just like in any other object\). So you may think of classes as "object generators" and objects as a very loosely instance of a class. This allows for a much more dynamic programming, but at the cost of worse class encapsulation.
+
+In the first example, you will notice that the attributes are defined directly by accesing `this` in the constructor. As the class is something so permisive, attributes can be defined anywhere, anytime, and is not required nor possible to strictly define a class attributes. It is not possible to create _private_ attributes either.
+
+Due to the permisive nature of JS classes, it is recommended to avoid "hacks" or weird implementations to avoid confussion, and stick \(when possible\) to simple and clear implementations.
+
+> **Pro Tip:** While private members and other features are not part of JS, playing around with scopes and Node.js _import_ system makes possible to emulate private variables in some cases \(We will comment on this in the following chapter\)
+
+### Classes Inheritance
+
+OOP is not OOP without some inheritance. JS classes \(and prototypes\) allow inheritance, which, again, have a pretty straighforward synax:
+
+```js
+class UrukHai extends Orc{
+    constructor(name){
+        super("Uruk-"+name);
+    }
+    
+    greet(){
+        return "We are taking the hobbits to Isengard";
+    }
+}
+
+let lurz=new UrukHai("Lurz");
+lurt.getName(); // Uruk-Lurz
+lurz.greet(); // We are taking the hobbits to Isengard
+```
+
+The `super` keyword allows you to access the parent methods, to override a method simply redeclare it.
+
+JS doesn't implements `interfaces` \(it doesn't really make sense with an extremely dynamic language\), and doesn't allow multiple inheritance.
+
+JS doesn't implement abstract classes either \(can be emulated by throwing errors\).
+
+These limitations, again, forces a more dynamic implementation of OOP instead of the rigid structure you'll find in languages such as Java.
+
+Using prototypes, to _extend_ a class \(prototype\) you would use:
+
+```js
+UrukHai.prototype = Object.create( Orc.prototype );
+```
+
+Which is as intuitive as writing assembly with unicode characters including emoji.
+
+> **Pro Tip 1: **Unlike other languages such as Java, in JS you **always** need to use `this` when referring to the class methods or attrbiutes.
+
+> **Pro Tip 2:** JavaScript doesn't support multiple constrcutors or method overloading, it will follow the same rules as normal functions.
+
+### Classes and the Scope
+
+Classes introduced a whole new level of scoping problems. In a class you would use `this` to access other members
+
+### Static Methods
 
 ## Some ES6 functions and methods
 

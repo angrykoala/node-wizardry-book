@@ -9,7 +9,7 @@
 
 * [What is Node](basic-topics/what-is-node.md)
 * [Introduction to JS and ES6](basic-topics/introduction-to-js-and-es6.md)
-* Writing JS with Node
+* [Writing JS with Node](basic-topics/writing-js-with-node.md)
 
 ## Projects
 

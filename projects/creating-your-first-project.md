@@ -44,11 +44,46 @@ This file, as you can see, contains mainly metadata on the project. Most of the 
 We will start by creating a simple _http_ server, for that, we create the file `server.js`:
 
 ```javascript
-const http=require('http');
+const http = require('http');
 
-//TODO: Create example
+const server = http.createServer((req, res) => {
+    console.log("Request received");
+    res.end("Hello World");
+});
+
+server.listen(3000, (err) => {
+    if (err) {
+        return console.error('Error in server', err);
+    }
+
+    console.log("Server is listening on port " + port);
+});
+```
+_server.js_
+
+To execute this example, write in your terminal:
+```bash
+$ node server.js
+```
+If everything goes right, you should see the following message:
+```bash
+Server is listening on port 3000
 ```
 
-As you can see, we are using the library `http`, it is a node default library. You can check the full documentation of the node native packages in the official docs: https://nodejs.org/dist/latest-v6.x/docs/api
+If you open a browser and got to the URL `http://localhost:3000` you should see `Hello World` in the browser. You should also see the log `Request received` in the terminal.
+To stop the server you can either close the terminal or press `Ctrl+C`
 
-> Optionally, you can add a script in your package.json: `"start": "node server.js"` to start your server
+> Optionally, you can add a script in your package.json: `"start": "nCtrl+Code server.js"` to start your server
+
+Lets break down this example a bit:
+
+1. First, we import the dependencies we are going to use. In this case we use the built-in library `http`, because is a node library we do not need to explicitly add it as a dependency or install it with _npm_.
+    * You can check the full documentation of the http built-in package in the official node docs https://nodejs.org/api/http.html
+2. We create an http server with the method `createServer`. We pass a callback, which will be called for every request sent to the server. The parameters of the callback are _request_ and _response_ respectively. req contains all the request data (Url, method, ...). The response object allows to manipulate and send the response (e.g. status code). For now, we just log the request using `console.log` and send a Hello world message.
+    * _Fun tip_: If we add html tags to the response (`<h1>Hello World</h1>`) we will see the page formatted accrodingly in the browser (yay, our first 90s styled webpage).
+3. Even if we already configured the server, it is still idle. We need to start listening to a port (in this case, port `3000`). After executing `server.listen`, the application will stay active, even after reaching the end of the file, as the server is running indefinitely. The optional callback passed to the method will execute _after_ the server is set. The parameter `err` will contain the error data if there was a problem setting up the server or `null` if everything was correct.
+    * In another languages, such as python, setting up a server will either completely block the execution for anything else (acting like an infinite loop) or span a new _thread_. In JavaScript, however, we can keep executing other stuff without worrying for blocking it, as a server act as an I/O async process. Because of this, we could for example set up a second server right afterwards to a separate port.
+    
+This is all you need to set up a simple server with Node.js, there are several built-in packages that can be used just as easily, all documented here: https://nodejs.org/api
+
+While it is possible to build a full-featured server with built-in packages, most projects will use third-party packages such as [Express](http://expressjs.com) to speed up development. We will install and use some of those packages in future projects.

@@ -8,7 +8,6 @@
 ## Basic Topics
 
 * [What is Node](basic-topics/what-is-node.md)
-* [Node Setup](basic-topics/installing-and-setup.md)
 * [Introduction to JS and ES6](basic-topics/introduction-to-js-and-es6.md)
 * [Writing JS with Node](basic-topics/writing-js-with-node.md)
 

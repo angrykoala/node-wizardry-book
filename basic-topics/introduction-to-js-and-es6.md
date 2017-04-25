@@ -2,11 +2,11 @@
 
 > Remember: Java is to JavaScript what Car is to Carpet
 
-JavaScript is a \(relatively\) easy-to-learn language, with a syntax that result familiar to most programmers, as is "similar" to C++, Java, or python. Originally intended for browser-side scripting, there are a big amount of tutorials and documentation to start programming in this messy and lovely language.
+JavaScript is a \(relatively\) easy-to-learn language, with a syntax that is familiar to most programmers, as it's "similar" to C++, Java, or Python. Originally intended for browser-side scripting, there are plenty of tutorials and documentation to start programming in this messy and lovely language.
 
-In this small introduction, however, I will quickly introduce the basics, skipping the references to browser-side programming as are not needed for node.js. I will also introduce the latest features in JavaScript \(ES6\) that are usually left out in old guides or browser-side programming \(aaah, lovely browser-compatibility\). With node.js we can use all the latests js features without fear, as long as our node.js is up to date.
+In this introduction, however, I will quickly introduce the basics, skipping the references to browser-side programming as are not needed for Node.js. I will also introduce the latest features in JavaScript \(ES6\) that are commonly left out in most guides. With Node.js we can use all the latests JS features without fear, as long as our Node.js installation is up to date.
 
-For a full guide on JS programming, use explicit JS programming tutorials/books, as a lot of thing are not included in this introduction.
+For a full guide on JS programming, use a full JS programming tutorial/books, as a lot of thing are not included in this introduction.
 
 You can tests all the snippets here by writing them on the node REPL.
 
@@ -30,26 +30,29 @@ It is possible to directly assign a variable without `var`
 e=5; //This works, but it will create a global variable
 ```
 
-It is **not** recommended to use variables without declaring them first with `var` to avoid unknown global variables
+It is **not** recommended to use variables without declaring them first with `var` to avoid unknown global variables.
 
 ### Variable types
 
-Even if is dynamically typed, JavaScript uses the following types for its variables:
+Even if it is dynamically typed, JavaScript uses the following types for its variables:
 
 * **Number**: used for integer and float numbers \(`5`, `0`, `-3`, `4.3`\).
+
 * **String**: used for text and characters \(`"Hello"`, `"a"`, `""`\).
-  * Strings can be delimited with `" "`,`' '` and, in ES6, with ` `, which allows _multiline_ strings.
+
+  * Strings can be delimited with `" "`,`' '` and, in ES6, with \`\`\`\`\`\`\`\`, which allows _multiline_ strings.
+
 * **Boolean**: either `true` or `false`.
 
 * **Undefined**: used for a non-defined variable \(e.g. `var a;`\).
 
   * It is possible to set a variable to _undefined_ by writing: `var a=undefined`. 
 
-* **Null**: Represents an invalid or non-defined object. While similar to _undefined_, null values must be explicitly set.
+* **Null**: Represents an invalid or non-defined object. While similar to _undefined_, _null_ values must be set explicitly.
 
-  * To set a variable to null, `var a=null`
+  * To set a variable to null, `var a=null`.
 
-* **Object**: Any non-primitive type is defined as an object \(including classes instances and arrays\), it is usually defined as a pair key-value inside brackets: `{key: value}`
+* **Object**: Any non-primitive type is defined as an _object_ \(including classes instances and arrays\), it is usually defined as a pair key-value inside brackets: `{key: value}`
 
   * `var a={}` will define an empty object.
 
@@ -59,8 +62,8 @@ Even if is dynamically typed, JavaScript uses the following types for its variab
 
 In ES6,  `let` and `const` keywords were added to be used in place of `var`
 
-* **let** provides the same functionality as `var` however the scope of the variable is the code block it is defined, instead of the whole function. This avoids some pitfalls that may happen using `var` as let rules are more intuitive.
-* **const** declares a variable that can not be reassigned, this means that for primitive values \(string, number, boolean, null, undefined\) it cannot be modified. Objects, however, can be modified, even if they are constant, but the variable will always reference the same object.
+* **let** provides the same functionality as `var` however the scope of the variable is the code block in which it is defined, instead of the whole function. This avoids some pitfalls that may happen using `var` as _let_ rules are more intuitive.
+* **const** declares a variable that can not be reassigned, this means that for primitive values \(string, number, boolean, null, undefined\) it cannot be modified. _Objects_, however, can be modified, even if they are constant, but the variable will always reference the same object.
 
 ```js
 const a="Hello";
@@ -74,22 +77,22 @@ obj.foo="Hello"; // Valid
 obj={} // Error
 ```
 
-If your application required wide compatibility \(old browsers-compatible or node &lt;4\) `var` should be used instead. However, for modern js development `let` and `const` are recommended. For this guide we will use `let` and `const`.
+If your application require full retro compatibility \(old browsers or node &lt;4\) `var` should be used instead. However, for modern js development `let` and `const` are recommended. For this guide we will use `let` and `const`.
 
 ## Data Structures
 
-JavaScript is a particularly simple language when it comes to data structures, prior to ES6 you only had 2 options when it comes to store your data \(and, one is, in fact, implemented in the other\). Despite the few options, those structures are incredibly versatile, allowing to manipulate data in an extremely easy way.
+JavaScript is a particularly simple language when it comes to data structures, prior to ES6 you only had 2 option to store your data \(and, one is, in fact, implemented in the other\). Despite the few options, those structures are incredibly versatile, allowing to manipulate data in an extremely simple way.
 
 ### Basic data structures
 
 The two "primitive" data structures of JavaScript are:
 
-* **Objects: **
-* **Arrays**:
+* **Objects**
+* **Arrays**
 
 _**Objects**_
 
-"Hi, I'm an object. You may remember me from such chapters as _variable types_._ \_An object is a set of pairs key-values, it is used mainly to represent \_classes instances, map structures \_or just to glue several things together. It is describe between \_brackets _`{ }`, each pair is represented as `key: value` and each pair is separated by a _comma_. For example:
+"Hi, I'm an object. You may remember me from such chapters as _variable types"_._ _An object is a set of pairs_ key-values, _it is used mainly to represent class instances, map structures or just to glue several things together. It is describes inside brackets `{ }`, each pair is represented as `key: value` and pairs are separated by a _comma_. For example:
 
 ```js
 let robot= {
@@ -99,11 +102,11 @@ let robot= {
 }
 ```
 
-The **key** must be an _string_ \(or _Symbol_\), the **value** can be anything, including _functions_ or other objects \(including itself\).
+The **key** must be an unique _string_ \(or _Symbol_\), the **value** can be anything, including _functions_ or other objects \(even itself\).
 
-Object elements can be accesses either with `.` \(`robot.name`\) or using the _square brackets_ \(`robot["name"]`\), trying to access to an non-defined member \(e.g `robot.love` will return `undefined)`
+Object elements can be accesses either with `.` \(`robot.name`\) or using the _square brackets_ \(`robot["name"]`\), trying to access to an non-defined member \(e.g `robot.love` will return `undefined)`.
 
-> **Pro Tip**: Be aware that while accessing an undefined member will not be a problem, trying to access to a member of an `undefined` or `null` variable will throw an error \(e.g. `robot.love.me`\)
+> **Pro Tip**: Be aware that while accessing an undefined member will not be a problem, trying to access to a member of an `undefined` or `null` variable will throw an error \(e.g. `robot.love.me`\).
 
 All non-primitive types are defined as objects \(including arrays and functions\), and any class you create will instance objects \(classes will be reviewed later\). An object can also be used as a _map_ data structure. However, ES6 also provides a specific data structure for this case, we will see it later.
 
@@ -244,7 +247,7 @@ for(var i=0;i<100;i++){
 }
 ```
 
-However, JS offers alternative versions of for loops to iterate through an object or array:
+However, js offers alternative versions of for loops to iterate through an object or array:
 
 **for...in loop**
 
@@ -346,11 +349,7 @@ Hey, but that looks a lot like a class! Is that funny little voice in your head 
 
 JS doesn't support function overloading \(multiple functions with the same name but different parameters\).
 
-
-
 > TODO: finish this
-
-
 
 ### The Magic of Callbacks
 
@@ -488,11 +487,11 @@ class Orc{
     constructor(name){
         this.name=name;
     }
-    
+
     greet(){
         return "Urhgz";
     }
-    
+
     getName(){
         return this.name;
     }   
@@ -518,7 +517,7 @@ Orc.prototype.greet=function(){
 
 Orc.prototype.getName=function(){
     return this.name;
-}  
+}
 ```
 
 As you can see, this is an extremely more verbose and complex syntax \(and it get worse with inheritance\). Again, ES6 gave a sugar syntax \(`class`keyword\) that greatly increases readability. However, is good to know that it is still a sugar-syntax, so classes are, in fact, `functions`and the `new` keyword creates an Object, using the function as some kind of constructor. The prototype chain defines the "parent" methods and attributes. For this guide we will, again, use the most modern syntax.
@@ -540,7 +539,7 @@ class UrukHai extends Orc{
     constructor(name){
         super("Uruk-"+name);
     }
-    
+
     greet(){
         return "We are taking the hobbits to Isengard";
     }
@@ -568,7 +567,7 @@ UrukHai.prototype = Object.create( Orc.prototype );
 Which is as intuitive as writing assembly with unicode characters including emoji.
 
 > **Pro Tip 1: **Unlike other languages such as Java, in JS you **always** need to use `this` when referring to the class methods or attrbiutes.
-
+>
 > **Pro Tip 2:** JavaScript doesn't support multiple constrcutors or method overloading, it will follow the same rules as normal functions.
 
 ### Classes and the Scope
@@ -584,17 +583,19 @@ class Hobbit{
             this.takeSecondBreakfast(); //this is undefined
         },1000);
     }
-    
+
     takeSecondBreakfast(){
         this.eat();
     }
 }
 ```
-Note that for this example we didn't use the _arrow function_ (`=>`).
+
+Note that for this example we didn't use the _arrow function_ \(`=>`\).
 
 To solve this problem, there are 3 approaches:
 
 We can save the function in a variable, before the callback, making it part of the scope:
+
 ```js
 takeBreakfast(){
     this.eat();
@@ -606,6 +607,7 @@ takeBreakfast(){
 ```
 
 We can also use `.bind`, which allows you to bind variables to the scope of a function:
+
 ```js
 takeBreakfast(){
     this.eat();
@@ -615,7 +617,8 @@ takeBreakfast(){
 }
 ```
 
-However, these two options are quite _"hacky"_, and while they are still used (mainly for compatibility), the third option, the _arrow function_, solves the problem, as an arrow function automatically binds _this_:
+However, these two options are quite _"hacky"_, and while they are still used \(mainly for compatibility\), the third option, the _arrow function_, solves the problem, as an arrow function automatically binds _this_:
+
 ```js
 takeBreakfast(){
     this.eat();
@@ -624,7 +627,8 @@ takeBreakfast(){
     },1000);
 }
 ```
-As you can see, this is an example on why the arrow function exists (not only as a visual simplification for callbacks).
+
+As you can see, this is an example on why the arrow function exists \(not only as a visual simplification for callbacks\).
 
 ### Static Methods
 
@@ -637,3 +641,6 @@ As you can see, this is an example on why the arrow function exists (not only as
 try..catch
 
 ## Common Pitfalls
+
+
+

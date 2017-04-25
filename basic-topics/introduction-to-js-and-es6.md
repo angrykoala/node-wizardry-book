@@ -92,7 +92,7 @@ The two "primitive" data structures of JavaScript are:
 
 _**Objects**_
 
-"Hi, I'm an object. You may remember me from such chapters as _variable types"_._ _An object is a set of pairs_ key-values, _it is used mainly to represent class instances, map structures or just to glue several things together. It is describes inside brackets `{ }`, each pair is represented as `key: value` and pairs are separated by a _comma_. For example:
+"Hi, I'm an object. You may remember me from such chapters as _variable types"_._ \_An object is a set of pairs_ key-values, _it is used mainly to represent class instances, map structures or just to glue several things together. It is describes inside brackets _`{ }`_, each pair is represented as _`key: value`_ and pairs are separated by a \_comma_. For example:
 
 ```js
 let robot= {
@@ -108,19 +108,19 @@ Object elements can be accesses either with `.` \(`robot.name`\) or using the _s
 
 > **Pro Tip**: Be aware that while accessing an undefined member will not be a problem, trying to access to a member of an `undefined` or `null` variable will throw an error \(e.g. `robot.love.me`\).
 
-All non-primitive types are defined as objects \(including arrays and functions\), and any class you create will instance objects \(classes will be reviewed later\). An object can also be used as a _map_ data structure. However, ES6 also provides a specific data structure for this case, we will see it later.
+All non-primitive types are defined as objects \(including arrays and functions\), and any class you create will instantiate objects. An object can also be used as a _map_ data structure. However, ES6 also provides a specific data structure for this case, as we will see later.
 
 _**Array**_
 
-Arrays are represented using _square brackets _`[ ]`and each value is separated by a _comma. Arrays are commonly used as lists_ or _vectors_. For example:
+Arrays are represented using _square brackets _`[ ]`and each value is separated by a _comma. \_Arrays are commonly used as_ lists_ or \_vectors_. For example:
 
 ```js
 let characters = ["Zaphod", "Ford", "Arthur", robot, 42];
 ```
 
-As you can see, an array can store any type, and mix types \(this includes _objects_, _functions_ and, _itself_\)
+As you can see, an array can store any type, and mix different types together \(this includes _objects_, _functions,_ and _itself_\)
 
-To access/modify elements, you can use \_square brackets \_with a number:
+To access/modify elements, you can use _square brackets_ with a number:
 
 ```js
 characters[0]; // "Zaphod"
@@ -129,7 +129,7 @@ characters[10]; // undefined
 characters[-1]; // undefined
 ```
 
-To add an element to the end of the array you can use the method `push`to add an element to the end of the array. The variable `length` returns the size of the array:
+To add an element to the end of the array you can use the method `push`. The variable `length`  will returns the size of the array:
 
 ```js
 let races=["Humans"];
@@ -145,13 +145,13 @@ races.pop(); // "Vogons"
 races.length; // 1
 ```
 
-Arrays are usually represented as objects with numbers as key \(or, particularly, stringified numbers\). However, most interpreters make a lot of performance optimizations on arrays, making them usually faster than objects for adding/removing elements to the end and radom/iterative access.
+Arrays are usually represented as objects with numbers as keys \(or, particularly, stringified numbers\). However, most interpreters implement performance optimizations on arrays, making them usually faster than objects for adding/removing elements to the end and radom/iterative access.
 
-Arrays also provide a lot of methods to manipulate the array, you can check them on [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global\_Objects/Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array).
+Arrays also provide a lot of methods for manipulation like sorting or splitting, you can check them on [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global\_Objects/Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array).
 
-> **Pro Tip:** As arrays are also objects, you can use anything as index, but it is heavily **not** recommended, if you want and object, use an object.
+> **Pro Tip:** As arrays are also objects, you can use anything as index, but it is heavily **not** recommended, if you want an object, use an object.
 >
-> **Pro Tip 2:** You can set any index of the array at any moment \(e.g. `characters[40] = "Deep Thought"` , it will fill the array with `undefined` values up to that point, making it's length equal the latest index used. This is **not** recommended either unless an array full of undefined is you desired result.
+> **Pro Tip 2:** You can set any index of the array at any moment \(e.g. `characters[40] = "Deep Thought"`\), making it's length equal the latest index used. This is **not** recommended either, due to decreased performance and _undefined_ elements[^1].
 
 ### ES6 new data structures
 
@@ -643,4 +643,6 @@ try..catch
 ## Common Pitfalls
 
 
+
+[^1]: [http://www.martinrinehart.com/frontend-engineering/engineers/javascript/arrays/sparse-arrays.html](http://www.martinrinehart.com/frontend-engineering/engineers/javascript/arrays/sparse-arrays.html)
 

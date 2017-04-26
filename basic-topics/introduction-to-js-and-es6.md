@@ -79,6 +79,12 @@ obj={} // Error
 
 If your application require full retro compatibility \(old browsers or node &lt;4\) `var` should be used instead. However, for modern js development `let` and `const` are recommended. For this guide we will use `let` and `const`.
 
+## Operators
+
+> TODO: quick note of operators and ===
+
+
+
 ## Data Structures
 
 JavaScript is a particularly simple language when it comes to data structures, prior to ES6 you only had 2 option to store your data \(and, one is, in fact, implemented in the other\). Despite the few options, those structures are incredibly versatile, allowing to manipulate data in an extremely simple way.
@@ -151,15 +157,15 @@ Arrays also provide a lot of methods for manipulation like sorting or splitting,
 
 > **Pro Tip:** As arrays are also objects, you can use anything as index, but it is heavily **not** recommended, if you want an object, use an object.
 >
-> **Pro Tip 2:** You can set any index of the array at any moment \(e.g. `characters[40] = "Deep Thought"`\), making it's length equal the latest index used. This is **not** recommended either, due to decreased performance and _undefined_ elements[^1].
+> **Pro Tip 2:** You can set any index of the array at any moment \(e.g. `characters[40] = "Deep Thought"`\), making it's length equal the latest index used. This is **not** recommended either, due to decreased performance and _undefined_ elements.
 
 ### ES6 new data structures
 
-ES6 introduced 2 more data structures as built-in objects: **map** and **set**, as well as the _weak_ key versions: **weakMap** and **weakSet**. While these structures are not as versatile as the primitive structures, its use is recommended for the specific cases that are designed for, as provide specific functionality for those cases, and usually an improved performance, leading to a simpler and more efficient code.
+ES6 introduced 2 more data structures as built-in objects: **map** and **set**, as well as the _weak_ key versions: **weakMap** and **weakSet**. While these structures are not as versatile as the primitive structures, its usage is recommended for the specific cases that are designed for, as they provide specific functionality, and usually come with improved performance, leading to a simpler and more efficient code.
 
 _**Map**_
 
-A map is a data structure that stored elements assigning them to an unique key.
+A map is a data structure that store elements assigning them to an unique key.
 
 ```js
 let cast=new Map();
@@ -168,17 +174,17 @@ map.set("sidekick", "Ford");
 map.get("main"); // Arthur
 ```
 
-As you can see, maps are similar to a native objects \(in fact, object have been traditionally used as Maps structures\) but using `set` and `get` instead of _square brackets_. However, maps have some key differences with objects:
+As you can see, maps are similar to native objects \(in fact, object have been traditionally used as maps structures\), but using `set` and `get` instead of _square brackets_. Maps, however, have some key differences with objects:
 
 * The key can be anything, including **null**, **undefined **and **functions**.
-* Maps provides a `size`variable and are iterable, like arrays.
-* Map doesn't contain default keys.
+* Maps contain a `size`variable and are iterable, like arrays.
+* Maps don't contain default keys.
 
-> **Pro Tip:** As maps are objects, using _square brackets_ in a map **won't** throw an error, in fact, the data will be stored as in any other object, but it **won't** be stored as part of the map, but as a separate key. It is heavily recommended **not** to use square brackets at all with maps.
+> **Pro Tip:** As maps are objects, using _square brackets_ in a map **won't** throw an error, in fact, the data will be stored as in any other object. It **won't** be stored as part of the map, but as a separate key. It is heavily recommended **not** to use square brackets at all with maps.
 
 _**Set**_
 
-Sets allows you to store unique values. It is different of an array as if the same value is added twice, it will only store one instance.
+Sets allows you to store unique values. It core difference with arrays is that if the same value is added twice, it will only store one instance.
 
 ```js
 let spaceships=new Set();
@@ -202,9 +208,9 @@ As you can see, sets are useful to count or remove repeated elements.
 
 **WeakMap** and **WeakSet**
 
-These 2 structures behave almost exactly as the previous two, however they store the object references as _weak_ references, which mean that the references will be removed by the garbage collector if there are not more references to those \(Garbage collection and performance will be further discussed in [JS Performance and Garbage Collector](/advanced-topics/js-performance-and-garbage-collector.md).
+These 2 structures behave almost exactly as the previous two, however they store the object references as _weak_ references, meaning that the references will be removed by the garbage collector if there are not other references to those. \(Garbage collection and performance will be further discussed in [JS Performance and Garbage Collector](/advanced-topics/js-performance-and-garbage-collector.md)\).
 
-Having weak references is particularly useful when you want to handle loose structures with a lot of living objects without handling memory allocation. However, you cannot reliably know the size of the structures when using weak references.
+Having weak references is particularly useful when you want to handle loose structures with a lot of living objects without handling memory allocation. However, you cannot reliably know the size of the structures when using weak references, as it may change at any moment.
 
 ## Conditionals and loops
 
@@ -242,7 +248,7 @@ switch(expression) {
 The basic implementation of for loops is similar to that found in C or Java:
 
 ```js
-for(var i=0;i<100;i++){
+for(let i=0;i<100;i++){
     // do stuff 100 times
 }
 ```
@@ -254,7 +260,7 @@ However, js offers alternative versions of for loops to iterate through an objec
 The for in loop allows to iterate through the properties of an object:
 
 ```js
-for (var key in obj) {
+for (let key in obj) {
   if (obj.hasOwnProperty(key)) {
     // This if is required to ensure that we only iterate in the object properties, and not the parent
 
@@ -267,8 +273,8 @@ for (var key in obj) {
 
 Introduced in ES6, the for...of loop iterated through iterables such as arrays:
 
-```
-var arr=[]
+```js
+let arr=[]
 for (let value of iterable) {
   value += 1;
   console.log(value);
@@ -291,9 +297,7 @@ do{
 
 ## Functions
 
-> No, here we are not going to talk about functional programming
-
-Functions is one of the most interesting features of js \(yes, functions, I know it doesn't sound very fancy\).
+Functions are one of the most interesting features of js \(yes, functions, I know it doesn't sound very fancy\).
 
 To declare a function in JavaScript we use the following syntax:
 
@@ -307,7 +311,7 @@ getUltimateAnswer(); // 42
 
 As you can see, it is pretty straightforward. Now you may be thinking. What's so great about this?.
 
-In a nutshell, the most interesting fact about JS functions is that they are _objects_ \(throws confetti\), which means that they can be used as any other variable:
+Simplifying a bit, the most interesting fact about js functions is that they are _objects_ \(throws confetti\), which means that they can be used just as any other variable:
 
 ```js
 function funcA(){
@@ -339,21 +343,63 @@ ford.name; // "Ford"
 ford.panic(); // "don't"
 ```
 
-Hey, but that looks a lot like a class! Is that funny little voice in your head that. As we will discuss later, JS provides a very specific of dealing with OOP, which is, partialy solved with implementations similar to the one above.
+Hey, but that looks a lot like a class!. As we will discuss later, js provides a very specific way of dealing with OOP, which is, partialy solved with implementations similar to the one above.
 
 > **Pro Tip 1:** As functions are objects, you can actually add other members to it `getUltimateAnswer.lifeUniverseEverything=42` However, it may lead to confussion.
 >
-> **Pro Tip 2:** Most of these pro tips are actually things you shouldn't do.
+> **Pro Tip 2:** Most of these "pro tips" are actually things you shouldn't do.
 
 ### Function parameters overloading
 
-JS doesn't support function overloading \(multiple functions with the same name but different parameters\).
+JS doesn't support function overloading \(multiple functions with the same name but different parameters\). However, because of the loose behaviour of variables, we can easily imitate function overloading:
 
-> TODO: finish this
+```js
+function salute(name, surname){
+    if(surname!==undefined) console.log("Hello "+name+" "+surname);
+    else console.log("Hello "+name);
+}
+
+salute("Ford","Prefect"); // "Hello Ford Prefect"
+salute("Marvin"); // "Hello Marvin"
+```
+
+When a parameters is not passed, instead of failing or throwing an error, that parameter is simply an _undefined_ function. because of this, we can simply compare with _undefined_ and modify the function behaviour.
+
+Another common way of dealing with with parameters overloading is using _default_ values. The traditional way is using the operator `|| `:
+
+```js
+function salute(name,surname){
+    surname=surname || "";
+    console.log("Hello "+name+" "+surname);
+}
+
+salute("Marvin"); // "Hello Marvin "
+```
+
+The operator `|| ` will assign the first operand if is _truthy, _if not it will assign the second operand \(""\). This works for strings, as any string is interpreted as truthy_ _\(event empty string\), while _undefined_ or _null_ is interpreted as falsy. This will not work for numbers, as a 0 is falsy while any other number is truthy.
+
+In ES6 there is a more intuitive way to define default variables:
+
+```js
+function salute(name,surname=""){
+    console.log("Hello "+name+" "+surname);
+}
+
+salute("Marvin"); // "Hello Marvin "
+
+```
+
+**Rest parameters**
+
+ES6 also implements _rest parameters, _which allows you to have n parameters, which will be passed as an array:
+
+```js
+//TODO
+```
 
 ### The Magic of Callbacks
 
-As mentioned before, functions can be handled as variables, and can be assigned. This variable, like any other variable, can be passed to a function as a parameter, then, that function can call the function passed as a parameter. This is a _callback_ \(epic music\).
+As mentioned before, functions can be handled as variables. This variables, like any other, can be passed to a function as a parameter, then, that function can call the function passed as a parameter. This is a _callback_ \(epic music\).
 
 ```js
 function panic(){
@@ -643,6 +689,4 @@ try..catch
 ## Common Pitfalls
 
 
-
-[^1]: [http://www.martinrinehart.com/frontend-engineering/engineers/javascript/arrays/sparse-arrays.html](http://www.martinrinehart.com/frontend-engineering/engineers/javascript/arrays/sparse-arrays.html)
 

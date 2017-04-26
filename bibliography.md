@@ -12,11 +12,3 @@
 
 
 
-### Introduction to Js
-
-* [http://www.martinrinehart.com/frontend-engineering/engineers/javascript/arrays/sparse-arrays.html](http://www.martinrinehart.com/frontend-engineering/engineers/javascript/arrays/sparse-arrays.html)
-
-
-
-
-

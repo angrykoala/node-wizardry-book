@@ -91,7 +91,7 @@ You can import these packages the same way, but you must install them before wit
 
 > **Pro Tip:** The folder `node_modules` must be used only for packages installed with npm, never for your code or manually downloaded packages
 
-### About packages
+### Packages vs. Modules
 You may sometimes see that the words _"module"_ and _"package"_ are interchangeable. However, there are some small differences:
 * A module is anything that can be required, like js files.
 * A package is a directory described by a _package.json_. In general, every node application is a package, and a package can be a module (e.g. the dependencies you may install).

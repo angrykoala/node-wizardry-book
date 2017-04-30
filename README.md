@@ -1,6 +1,6 @@
 # Node Wizardry
 
-_Andrés Ortiz Corrales - @angrykoala_
+_Andrés Ortiz - @angrykoala_
 
 This book aims to cover the basics of JavaScript development using Node.js applying modern development tools and techniques.
 
@@ -22,5 +22,7 @@ So, basically, the first part \(and the first project\) serves as an introductio
 >
 > * **Someone who never got to upper management**
 
+------
 
-
+![http://creativecommons.org/licenses/by-nc-sa/4.0](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)  
+This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0) by [Andrés Ortiz](https://github.com/angrykoala) and can be found [here](https://angrykoala.gitbooks.io/node-wizardry/content/)

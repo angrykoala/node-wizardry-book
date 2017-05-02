@@ -1,18 +1,18 @@
-# Introduction to JavaScript \(and ES6\)
+# Introduction to JavaScript and ES6
 
 > Remember: Java is to JavaScript what Car is to Carpet
 
-JavaScript is a \(relatively\) easy-to-learn language, with a syntax that is familiar to most programmers, as it's "similar" to C++, Java, or Python. Originally intended for browser-side scripting, there are plenty of tutorials and documentation to start programming in this messy and lovely language.
+JavaScript is a relatively easy-to-learn language, with a syntax that is familiar to most programmers, as it's "similar" to C++, Java, or Python. Originally intended for browser-side scripting, there are plenty of tutorials and documentation to start programming in this messy and lovely language.
 
-In this introduction, however, I will quickly introduce the basics, skipping the references to browser-side programming as are not needed for Node.js. I will also introduce the latest features in JavaScript \(ES6\) that are commonly left out in most guides. With Node.js we can use all the latests JS features without fear, as long as our Node.js installation is up to date.
+In this introduction I will quickly introduce the basics, skipping the references to browser-side programming as are not needed for Node.js. I will also introduce the latest features in JavaScript \(ES6\) that are commonly left out in most guides. With Node.js we can use all the latests js features without fear, as long as our Node.js installation is up to date.
 
-For a full guide on JS programming, use a full JS programming tutorial/books, as a lot of thing are not included in this introduction.
+For a full guide on js programming, use a full js programming tutorial/books, as a lot of thing are not included in this introduction.
 
 You can tests all the snippets here by writing them on the node REPL.
 
 ## Variables
 
-JS is dynamically typed which means you don't have to specify what are you going to store in a variable. Not only that, but you can also change the type of a variable any moment.
+js is dynamically typed which means you don't have to specify what are you going to store in a variable. Not only that, but you can also change the type of a variable any moment.
 
 Traditionally, `var` is used as keyword to define variables:
 
@@ -229,7 +229,7 @@ As you can see, sets are useful to count or remove repeated elements.
 
 **WeakMap** and **WeakSet**
 
-These 2 structures behave almost exactly as the previous two, however they store the object references as _weak_ references, meaning that the references will be removed by the garbage collector if there are not other references to those. \(Garbage collection and performance will be further discussed in [JS Performance and Garbage Collector](/advanced-topics/js-performance-and-garbage-collector.md)\).
+These 2 structures behave almost exactly as the previous two, however they store the object references as _weak_ references, meaning that the references will be removed by the garbage collector if there are not other references to those. \(Garbage collection and performance will be further discussed in [js Performance and Garbage Collector](/advanced-topics/js-performance-and-garbage-collector.md)\).
 
 Having weak references is particularly useful when you want to handle loose structures with a lot of living objects without handling memory allocation. However, you cannot reliably know the size of the structures when using weak references, as it may change at any moment.
 
@@ -372,7 +372,7 @@ Hey, but that looks a lot like a class!. As we will discuss later, js provides a
 
 ### Function parameters overloading
 
-JS doesn't support function overloading \(multiple functions with the same name but different parameters\). However, because of the loose behaviour of variables, we can easily imitate function overloading:
+js doesn't support function overloading \(multiple functions with the same name but different parameters\). However, because of the loose behaviour of variables, we can easily imitate function overloading:
 
 ```js
 function salute(name, surname){
@@ -465,7 +465,7 @@ setTimeout(onFinish,1000);
 console.log("The dolphin said");
 ```
 
-`setTimeout` is a JS built-in function that executes the callback after the given time \(in ms\) pass. In this case, it will execute onFinish after one second.
+`setTimeout` is a js built-in function that executes the callback after the given time \(in ms\) pass. In this case, it will execute onFinish after one second.
 
 Intuitively, you may think that setTimeout will wait 1 second,  _"So Long, and Thanks for All the Fish"_ will be logged, and afterwards, _"The dolphin said"_. However, if you execute the example you'll see that _"The dolphin said"_ is logged right away, and after 1 second, the other message is shown.
 
@@ -522,13 +522,15 @@ function awesomeTask(){
 }
 ```
 
-In this case, greetings is not defined. As greetings is not in the scope of _myCallback_. As you can see, scopes depends on where are defined the variables and code blocks. Scopes are important when it comes to working with callbacks. This is not everything when it comes to scopes, and we will see more of them in the future.
+In this case, greetings is not defined. As greetings is not in the scope of _myCallback_. As you can see, scopes depends on where the variables and code blocks are defined. Scopes are important when it comes to working with callbacks. This is not everything when it comes to scopes, and we will see more of them in the future.
 
 > Remember the difference between **var** and **let**? It basically comes down to scopes.
 
+> **Pro Tip:** To avoid the so called _callback hell_, you must structure the nested callbacks in separate functions and modules.
+
 ### Arrow functions
 
-As we saw, functions can be declared in different ways. In ES6 a new way of declaring _anonymous_ functions was implemented: The _arrow functions_.
+As we saw, we can declare functions in different ways. In ES6 exists a new way to declare _anonymous_ functions: The _arrow functions_.
 
 ```js
 setTimeout(()=>{
@@ -536,10 +538,10 @@ setTimeout(()=>{
     },1000);
 ```
 
-Arrow functions where added to provide two small \(but useful\) features against traditional anonymous functions:
+Arrow functions where added to provide two small, but useful, features against traditional anonymous functions:
 
-* More compact syntax: While it may seem of little importance, when it comes to declare callbacks \(and callbacks in callbacks\)  compact syntax greatly improves readability.
-* Binding the `this`scope to the callback: This is extremely important when working with classes, as we will see in the following section.
+* More compact syntax: While it may seem of little importance, when it comes to declare callbacks (and callbacks in callbacks)  compact syntax greatly improves readability.
+* Binding the `this`scope to the callback: This is important when working with classes, as we will see in the following section.
 
 Arrow functions also provide an alternative syntax for only returning variables:
 
@@ -549,7 +551,7 @@ Arrow functions also provide an alternative syntax for only returning variables:
 name=>"Hello "+name;
 ```
 
-These, again, are _"sugar"_ syntax to reduce verbosity and make callbacks more compact. Arrow functions are not usually needed \(and are only compatible with ES6\), but for this guide we will stick to them, as it results in a more readable code.
+These, again, are _"sugar"_ syntax to reduce verbosity and make callbacks more compact. Arrow functions are not required, and are only compatible with ES6, but for this guide we will stick to them, as it results in a more readable code.
 
 ## The Treachery of Classes
 > Ceci n'est pas une classe
@@ -598,9 +600,7 @@ Orc.prototype.getName=function(){
 ```
 _Orc prototype_
 
-As you can see, this is a more verbose and complex syntax and it gets worse with inheritance. Again, ES6 implemented a sugar-syntax (`class` keyword) which increases readability, but is still good to know that classes are, in fact, `functions` and that the `new` keyword creates an object using the function as some kind of constructor in which the prototype chain defines the "parent" methods and attributes. For this guide we will, again, use the modern ES6 syntax.
-
->TODO: improve this explanation
+As you can see, this is a more verbose and complex syntax, and it gets worse with inheritance. Again, ES6 implemented a sugar-syntax (`class` keyword) which increases readability, but is still good to know that classes are, in fact, `functions` and that the `new` keyword creates an object using the function as some kind of constructor which defines the prototype methods and attributes which the instantiated object inherits. For this guide we will, again, use the modern ES6 syntax.
 
 Note how the instance of a class is a simple js object with the attributes and methods defined in the class. This means that you may redefined any attribute and method afterwards, like in any other object. You may think of classes as "object generators" and objects as loose instances of a class. This allows for a much more dynamic programming, but at the cost of worse class encapsulation.
 
@@ -634,7 +634,7 @@ The `super` keyword allows you to access the parent methods, to override a metho
 
 Js doesn't implement `interfaces`, it doesn't make sense in a language as dynamic as js. Multiple inheritance is not allowed, so a class can only inherit from one single parent, though the parent may inherit from a third class.
 
-There aren't abstract classes either. You can emulate them by throwing errors in the constructor, but usually is better to use normal classes instead:
+There aren't abstract classes either. You can emulate them by throwing errors in the constructor, but is usually better to simply use normal classes instead:
 
 ```js
 class BigMonster{
@@ -664,7 +664,7 @@ UrukHai.prototype = Object.create( Orc.prototype );
 
 Which is as intuitive as writing assembly with unicode characters, including emoji.
 
-> **Pro Tip 1:** Unlike other languages such as Java, in JS you **always** need to use `this` when referring to the class methods or attributes.
+> **Pro Tip 1:** Unlike other languages such as Java, in js you **always** need to use `this` when referring to the class methods or attributes.
 
 > **Pro Tip 2:** JavaScript doesn't support multiple constructors or method overloading, it follows the same rules as normal functions.
 
@@ -678,7 +678,7 @@ class Hobbit{
     takeBreakfast(){
         this.eat();
         setTimeout(function(){
-            this.takeSecondBreakfast(); //this is undefined
+            this.takeSecondBreakfast(); // this is undefined
         },1000);
     }
 
@@ -715,7 +715,7 @@ takeBreakfast(){
 }
 ```
 
-These two options work fine, but are a bit _"hacky"_, and while they are still used (mainly due to compatibility), the third option, the _arrow function_, solves the problem, as an arrow function automatically binds _this_:
+These two options work fine, but both are a bit _"hacky"_, and while they are still used (mainly due to compatibility), the third option, the _arrow function_, solves the problem, as an arrow function automatically binds _this_:
 
 ```js
 takeBreakfast(){
@@ -729,6 +729,56 @@ takeBreakfast(){
 As you can see, arrow functions are not only as a visual improvements for anonymous syntax, they slightly simplify scoping rules in the same way `let` improves over `var`.
 
 ### Static Methods
+ES6 classes implements _static methods_, which you may call without creating an instance of the class:
+
+```js
+class Dragonborn{
+    //...
+    static shout(){
+        return "Fus Ro Dah";
+    }    
+}
+
+let nord=new Dragonborn();
+
+nord.shout(); // Error: undefined
+Dragonborn.shout(); // "Fus Ro Dah"
+```
+
+Remember that within a _static_ method you cannot access _this_. 
+
+> You cannot create static variables.
+
+### Setters and Getters
+ES6 implements setters and getters functions for classes and objects, these allows to use functions as variables, acting as something similar as a _proxy_:
+
+```js
+class Wizard{
+    constructor(name){
+        this.firstName=name;
+        this.type="grey";
+    }
+    set level(level){
+        if(level>10){
+            this.type="white";
+        } else this.type="grey";
+    }
+    
+    get name(){
+        return this.firstName+" the "+this.type;
+    }
+    //...
+}
+ 
+const gandalf=new Wizard("Gandalf");
+gandalf.name; // "Gandalf the grey"
+gandalf.level=11;
+gandalf.name; // "Gandalf the white"
+```
+
+In this case, we use them to achieve a more readable syntax compared to classic setters and getters (`setLevel`, `getName`). Keep in mind that overusing _setters_ and _getters_ may lead to confusion and performance issues, as there is no clear hints on what is a function and what a variable. It's better to use them in specific cases where we want to specifically hide the internal representation of a variable.
+
+> **Pro Tip:** Setters and Getters are also useful to log changes to a variable for debugging purposes. To do it,, change the internal variable name, and create setters and getters with the original name.
 
 ## Some ES6 functions and methods
 

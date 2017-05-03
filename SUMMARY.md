@@ -16,7 +16,7 @@
 * [Creating your first project](projects/creating-your-first-project.md)
 * [Chat App with websockets](projects/chat-app-with-websockets.md)
 * [Desktop application with Electron](projects/desktop-application-with-electron.md)
-* Let's write a proper server
+* [Let's write a proper server](projects/lets-write-a-proper-server.md)
 
 ## Advanced Topics
 

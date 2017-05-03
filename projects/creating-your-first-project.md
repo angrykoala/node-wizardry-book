@@ -1,7 +1,7 @@
 # Creating Your First Project
 _Remember: With Great Power Comes Great Responsibility_
 
-Finally, the time has come, lets create something cool. For this first approach to a Node.js project, we will cover some basics of writing a _web server_ with node. As you may know, even if Node.js makes js as versatile as any other language, is commonly applied to web back-end development.
+The time has come, lets create something cool. For this first approach to a Node.js project, we will cover some basics of writing a _web server_ with node. As you may know, even if Node.js makes js as versatile as any other language, is commonly applied to web back-end development.
 
 ## Setting up
 

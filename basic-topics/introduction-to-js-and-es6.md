@@ -2,7 +2,7 @@
 
 > Remember: Java is to JavaScript what Car is to Carpet
 
-JavaScript is a relatively easy-to-learn language, with a syntax that is familiar to most programmers, as it's "similar" to C++, Java, or Python. Originally intended for browser-side scripting, there are plenty of tutorials and documentation to start programming in this messy and lovely language.
+JavaScript is a relatively easy-to-learn language, with a syntax familiar to most programmers, as it's "similar" to C++, Java, or Python. Originally intended for browser-side scripting, there are plenty of tutorials and documentation to start programming in this messy and lovely language.
 
 In this introduction I will quickly introduce the basics, skipping the references to browser-side programming as are not needed for Node.js. I will also introduce the latest features in JavaScript \(ES6\) that are commonly left out in most guides. With Node.js we can use all the latests js features without fear, as long as our Node.js installation is up to date.
 
@@ -12,7 +12,7 @@ You can tests all the snippets here by writing them on the node REPL.
 
 ## Variables
 
-js is dynamically typed which means you don't have to specify what are you going to store in a variable. Not only that, but you can also change the type of a variable any moment.
+Js is dynamically typed which means you don't have to specify what are you going to store in a variable. You also can also change the type of a variable at any moment.
 
 Traditionally, `var` is used as keyword to define variables:
 
@@ -668,6 +668,23 @@ Which is as intuitive as writing assembly with unicode characters, including emo
 
 > **Pro Tip 2:** JavaScript doesn't support multiple constructors or method overloading, it follows the same rules as normal functions.
 
+### instanceof
+
+Even if being instances of a class won't ensure the object structure to be similar, all objects created from a class will return `true` when applying the operator `instanceof` over the object class or a parent of that class:
+
+```js
+const orc=new Orc();
+const uruk=new UrukHai();
+
+orc instanceof Orc; // true
+orc instanceof UrukHai; // false
+
+uruk instanceof Orc; // true
+uruk instanceof UrukHai; // true
+```
+
+Don't confuse with `typeof` operator, the latests will return `Object` in all the previous examples, as, any instance is, in fact, an object.
+
 ### Classes and Scopes
 
 Classes introduced a whole new level of scoping problems. In a class you would use `this` to access other members, but `this` is not part of the scope inside a callback:
@@ -780,12 +797,68 @@ In this case, we use them to achieve a more readable syntax compared to classic 
 
 > **Pro Tip:** Setters and Getters are also useful to log changes to a variable for debugging purposes. To do it,, change the internal variable name, and create setters and getters with the original name.
 
+## Error Handling
+
+JavaScript errors sometimes are not easy to manage, being a dynamically typed language, and having objects with arbitrary content usually leads to a lot of code just for handling edge cases.
+
+While sometimes we need to rely on classic js _"tricks"_ to handle errors such as comparing with `undefined` or manually checking and asserting on classes, in most cases we may rely on the js built-in error handler.
+
+The js error handler works in a similar way as in _Java_ using `try...catch` blocks:
+
+```js
+try{
+    // Operation that may throw an error
+} catch (e) {
+    // If the operation fails
+    console.error(e.message); // Logs the error message
+}
+```
+_try...catch example_
+
+Common operations that may fail are file handling, type errors and connections. You can also throw errors yourself. The `catch` block returns the thrown variable, while you can throw anything, you will usually get an `Error` object. You can access the message of the error with `e.message`.
+
+You can also use `finally` to execute code **after** the `try...catch`, regardless of the result.
+
+### Throwing errors
+You may want to throw your own errors when something goes wrong, so you can properly handle it with `try...catch` to avoid using conditionals or error codes to handle them:
+
+```js
+function setAge(age){
+    if(age<0) throw new Error("Invalid Age");
+    // ...
+}
+
+try{
+    setAge(-1);
+} catch (e){
+    console.error(e.message); // "Invalid Age"
+}
+```
+
+### Callback Error Handling
+Callbacks are a problem when it comes to error handling because you cannot ensure a thrown error to be caught if the callback is called asynchronously after the `try...catch` block is over.
+
+The first approach to solve this problem, used by most APIs and libraries, is to send the error as the first parameter of all callbacks:
+
+```js
+fs.readFile('secret_codes.txt', (err, data) => {
+    if(err){
+        // Handle error
+    } else {
+        // Everything correct
+    }
+});
+```
+
+Most libraries will send a `null` as first parameter if everything is correct. The error field is always the first parameter, as callbacks may use a different number of parameters, and is useful to alway handle the errors the same way.
+
+When implementing a library or code using callbacks, it's better to keep this style to match the rest of the libraries.
+
+> Promises are another style of handling asynchronous code. One of the main improvements is that you can catch Promises and handle errors with try...catch blocks, we will see more about promises in the chapter [Promises](advanced-topics/promises)
+
 ## Some ES6 functions and methods
 
 ## Introduction to Node.js API
 
-## Error Handling
-
-try..catch
 
 ## Common Pitfalls

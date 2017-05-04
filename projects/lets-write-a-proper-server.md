@@ -1,10 +1,1 @@
-# ![](/assets/websocket.png)Let's Write a proper server
-
-
-
-
-
-
-
-
-
+# Let's Write a proper server

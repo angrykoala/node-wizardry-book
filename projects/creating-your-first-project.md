@@ -3,7 +3,11 @@ _Remember: With Great Power Comes Great Responsibility_
 
 The time has come, lets create something cool. For this first approach to a Node.js project, we will cover some basics of writing a _web server_ with node. As you may know, even if Node.js makes js as versatile as any other language, is commonly applied to web back-end development.
 
-## Setting up
+## Description
+
+> TODO: Explain how http servers work vs php or other languages
+
+## Setup
 
 The best and simplest way to start a project with node js is opening a terminal, going to the folder where you want to put your code and write:
 

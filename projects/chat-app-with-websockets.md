@@ -11,7 +11,7 @@ This provides, not only a simpler implementation for some cases, but several per
 * Very little message size. Each message is only a few bytes, as no handshake or connection data is required.
 * Large number of concurrent connections. In most cases, a server can handle more concurrent active connections with websockets than the same number of plain HTTP request.
 
-# ![](/assets/websocket.png)
+![](/assets/project_chat/websocket.png)
 _WebSocket diagram (www.pubnub.com)_
 
 > Even if websockets are so great, they are not suitable for everything. Because of the overhead of having an active connection, websockets will provide an improvement over plain HTTP request when there are a lot of small messages or you actually need bi-directional messages. It may not behave prorperly with big messages like sending big JSONs or files.
@@ -186,8 +186,124 @@ The implementation here is much simpler, as we only need to handle one socket. T
 
 Then, when the connection is successful, the callback will be executed. For now we will show and _alert_ notifying we are connected, remember that `alert` is a browser specific command.
 
-Now we are ready to perform our first test if you fire the server and go to `localhost:9090` you should see the same page as before, but shortly after you should see an alert saying _"connect"_. If you go to your terminal, you should also see a _"User Connected"_ log in the server.
+Now we are ready to perform our first real test if you fire the server and go to `localhost:9090` you should see the same page as before, but shortly after you should see an alert saying _"connect"_. If you go to your terminal, you should also see a _"User Connected"_ log in the server.
 
 > You can now try some of the basics socket.io features commented before, if you close your browser you should see a "User disconnected" message in the server. You could also try opening several browsers and you should see how the server understands how multiple "users" (or different sockets) are connected. Not only that, but if you close the server with the page opened and start again the server, you will see the alert again. This is thanks to the automatic reconnection feature of Socket.io
 
-## Let's spice it a bit
+We can connect and disconnect, but we still can't send or receive messages. Lets fix that
+
+## Chat web
+We first need a proper webchat!, to do that lets modify `index.html`, we will replace the current content inside `<body>` with the following:
+
+```html
+<!-- body begin -->
+<center>
+    <h1>My Chat</h1>
+    <p id="chat"></p> <!-- Chat messages will be shown here -->
+    
+    <form action="javascript:void(0);" onsubmit="javascript:send();" id="chat-form">
+        <input type="text" id="user-input" size="30" /></br>
+        <input type="submit" value="Send" /> <!-- when input call send function -->
+    </form>
+</center>
+<!-- scripts -->
+<!-- body end -->
+```
+
+This is a typical html form, with a text-box and a _"send"_ button. When the user writes something and click send, the function `send()` will be called thanks to the `onsubmit` value.
+
+> You can learn more about html in TODO: insert w3school link or something
+
+If you start the server and go to `localhost:9090` now you should see something a bit more interesting:
+
+![](/assets/project_chat/mychat_screen.png)
+
+The layout is ready, but we still need to implement a few things
+
+First, we need to show to the user the received messages. We will do that by creating a new event in the socket of _chat.js_:
+```js
+socket.on('receive', function(msg) { // msg is the content of the socket message
+    const chatobj=document.getElementById("chat"); // gets chat DOM object
+    //appends msg to chatobj content
+    chatobj.innerHTML=chatobj.innerHTML+'</br>'+msg;
+});
+```
+_mychat.js_
+
+Here, we are using the custom event _receive_, when the server sends us a "receive" message, we will add it to the html.
+
+We should add a _"disconnection"_ message, in case the user loses the connection with the server, to do it, we add another event _"disconnect"_ that will be called if the socket is disconnected. 
+
+```js
+socket.on('disconnect', function() {
+    const chatobj=document.getElementById("chat");
+    chatobj.innerHTML=chatobj.innerHTML+'</br>'+"Server connection lost";
+});
+```
+
+Instead of showing a nasty _alert_, we will just show a message telling the user what happened. We can do the same to the _"connect"_ event, so we don't need the alert anymore:
+
+```js
+socket.on('connect', function(){
+    const chatobj=document.getElementById("chat");
+    chatobj.innerHTML=chatobj.innerHTML+'</br>'+"connected";
+});
+```
+
+We only have one thing missing, sending the message. As mentioned before, our _form_ will automatically call the function `send()` when the user presses the button, so we need to create that function, we can do it right after our sockets events:
+```js
+function send() {
+    const input = document.getElementById("user-input").value;
+    document.getElementById("user-input").value="";
+    socket.emit('msg',input.trim());
+}
+```
+3 things are happening here:
+1. We get the value of `user-input`, the DOM object where the user will write his text.
+2. We remove the text in `user-input`.
+3. We send that value with the _"msg"_ event, remember that `msg` is the event our server is expecting.
+    * `trim()` is a js native method for strings that removes any whitespace at the beginning and end of a string, so _"  hello  "_ is turned into _"hello"_.
+
+Here you can see a rough diagram of what's going on when an user connects and sends a message:
+
+![](/assets/project_chat/sequence_diagram)
+
+And thats it for our client, lets try our chat again!
+
+When entering the web you should see a _connected_ message instead of an alert, we are going to type something and click send... and nothing happens...
+
+What's happening? Lets check our server. If you see the terminal log, you should see something like this:
+```
+Magic happens in port 9090
+User connected
+Received: Hello World!
+```
+
+The server is receiving the message! That's good, the problem is that we haven't send the message back to the other users!.
+
+![](/assets/project_chat/scream.png)
+
+## Server broadcasting
+In server code (_server.js_), we need to modify the code inside our event `on("msg")`, so instead of just showing a message to console, we send the message back to the users.
+
+We just need to modify that event:
+```js
+socket.on('msg', function (content) {
+    io.emit('receive', content);
+});
+```
+_server.js msg event_
+
+Note that here we are using `io.emit` instead of `socket.emit`, this is because we want to emit the event to all connected sockets, not only the one that sent the message.
+
+> If you look carefully to _server.js_ code, you will notice that we don't need any structure to manage multiple sockets, thanks to callback scopes, a new _"socket"_ variable is created with every connection. This kind of implementation only allows us to answer to the same socket that sent us a message. For a more complex behavior we could need a proper structure, instead of relying in scopes. This is exactly the same behavior you will find in the express library when handling multiple requests.
+
+If we try our chat again now... "Sucess"! when we write something the server answers back and we see the text in the chat!.
+
+We can now play opening several browsers and trying to chat. You can even try real chat with another computer in your local network!.
+
+## Extra improvements
+Our chat implementation is very rudimentary, but it is built on top of of some of the most awesome web technologies, there are a lot of possible work to do if you want to improve your own chat service!
+* Improve the webpage adding some css styles.
+* Add users to the server and one-to-one messages.
+* Build and android client app, this can be done with any websockets or socket.io implementation in Java

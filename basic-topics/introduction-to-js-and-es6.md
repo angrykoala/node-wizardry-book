@@ -856,7 +856,142 @@ When implementing a library or code using callbacks, it's better to keep this st
 
 > Promises are another style of handling asynchronous code. One of the main improvements is that you can catch Promises and handle errors with try...catch blocks, we will see more about promises in the chapter [Promises](advanced-topics/promises)
 
-## Some ES6 functions and methods
+## ES6 fuctional-style methods
+ES6 introduced several methods and utilities in standalone JavaScript. Most are quite straightforward and simple to use, however, the following array methods where added to provide a more functional programming style, and generally produces a cleaner, more encapsulated code avoiding obscure loops, but using callbacks:
+
+**map**
+Returns a new array with the same size as the original arra. It is useful to modify all the content of an array:
+```js
+const ages=[10,12,5];
+
+const mySecondArr=myArr.map((element)=>{
+    element+1;
+});
+
+// mySecondArr = [11,13,6];
+```
+
+The callback has one parameter, the array element, and the returned element will be the element in new array in the same position. In this example we are adding one to all the ages of the original array.
+
+**filter**
+It returns an array with **only** the elements that are accepted by the callback. This function is particularly useful to modify the array content without having to handle pointers or counters manually:
+
+```js
+const ages=[4,16,20,8,19];
+
+const allowedAges=ages.filter((age)=>{
+    return age>=18;
+});
+
+// allowedAges = [20,19]
+```
+
+**reduce**
+Works in the same way as map, but in this case it returns a single variable:
+
+```js
+const ages=[6,12,10];
+
+const totalAge=ages.reduce((total,current)=>{
+    return total+current;
+},0);
+
+``` 
+The function accepts two parameters, first the callback to be executed for each element and second the initial value of the returned variable.
+With each execution of the callback, two parameters will be passed to it, the accumulated value of the previous executions (beginning with the initial value) and the value of the current element. The returned variable of the function will be sent to the next function.
+
+In the previous example, all the ages of the array are added into a single number, the total age, which is then returned. As you can see, the initial value is 0.
+
+_Reduce_ is useful to generate objects from arrays, as you can accumulate all the elements into the same object:
+
+```js
+const peopleArray=[["Bilbo",90],["Gandalf",560],["Frodo",30]];
+
+const peopleObject=peopleArray.reduce((total,current)=>{
+    total[current[0]]={
+        age: current[1]
+    }
+},{});
+
+/* peopleObject = {
+    Bilbo: {
+        age: 90
+    },
+    Gandalf: {
+        age: 560
+    },
+    Frodo: {
+        age: 30
+    },  
+}*/
+```
+
+**Concatenating array methods**
+All these methods are useful to perform operations such as parsing or data manipulation avoiding loops, but the main advantage over simple loops is that the returned array can be used to perform another method, leaving patters such as _"map-reduce"_ to perform operations.
+
+For example, we can easily parse, filter and format data in one go:
+
+```js
+const moneyInAccounts=[100,300,1600];
+
+function payMonth(money){
+    return money-400;
+}
+
+function isNegative(number){
+    return number<0;
+}
+
+function accumulateDebt(debt1,debt2){
+    return debt1-debt2;
+}
+
+const totalDebt=moneyInAccounts.map(payMonth).filter(isNegative).reduce(accumulateDebt,0);
+
+// totalDebt=400
+```
+
+Here, to calculate how much money we owe the bank after reducing our expenses from all the acocunts, we perform 3 operations:
+1. We reduce our expenses (400) per account, this results in `[-300,-100,1200]`
+2. We only need the accounts with negative balance, so we filter, resulting in `[-300,-100]`
+3. Finally, we accumulate our debt of all the accounts, 300 and 100 gets us a total debt of 400
+
+Compare, the same logic, using a loop:
+```js
+const moneyInAccounts=[100,300,1600];
+
+function payMonth(money){
+    return money-400;
+}
+
+function isNegative(number){
+    return number<0;
+}
+
+function accumulateDebt(debt1,debt2){
+    return debt1-debt2;
+}
+
+let totalDebt=0;
+
+for(let m in moneyInAccounts){
+    let money=moneyInAccounts[m];
+    money=payMonth(money);
+    if(isNegative(money)){
+        accumulateDebt(totalDebt,money);
+    }    
+}
+```
+
+In this case, instead of performing three encapsulated operations, we do all the calculations in one go, so we need a `loop` block and an `if` nested block, with an external variable that we are going to modify in each iteration, making all the logic more obscure and easy to produce hidden changes in our code. 
+In the functional approach, however, each operation is completely independent of the others, without shared variables, you can note how we are only using one variable (`totalDebt`) and is a `const` variable, so we are not modifying it at any point. While in the second example we are using 2 temporal variables in the loop and the resulted variable must be a `let` variable.
+
+Of course, not all loops and conditionals can be turned into functional-style with JavaScript
+
+
+> **Pro Tip 1:** The original arrays are not modified when using map, reduce or filter
+
+> **Pro Tip 2:** The callbacks used can be, like any other callback, separate functions, resulting in a cleaner, more understandable code
 
 ## Introduction to Node.js API
 

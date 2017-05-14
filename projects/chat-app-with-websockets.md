@@ -1,14 +1,14 @@
 # Chat App
 
 ## Description
-For this project we will be building one of the classics of Node.js, a IRC-style chat application. We will rely on [Socket.io](https://socket.io) library, which allows us to easily use _websockets_. Thanks to this, out chat will be up and running in no time.
+For this project we will be building one of the classics of Node.js, an IRC-style chat application. We will rely on [Socket.io](https://socket.io) library, which allow us to easily use _websockets_. Thanks to it, out chat will be up and running in no time.
 
 ### About websockets
-Websockets is a relatively new technology standard in most moder browsers, and with implementation in most languages and platforms (e.g. Android). When creating a websocket we will have a permanent bi-directional connection between a client and our server, this way, with very little overhead, we can send data both ways without creating and destroying connections with each message.
+Websockets is a technology standard, implemented in most modern browsers, and in most languages and platforms (e.g. Android). After creating a websocket we will have a permanent bi-directional connection between a client and our server, this way, with little overhead, we can send data both ways without creating and destroying connections with each message.
 
 This provides, not only a simpler implementation for some cases, but several performance improvements:
 * No need of polling, because the server can notify the client directly.
-* Very little message size. Each message is only a few bytes, as no handshake or connection data is required.
+* Small message size. Each message is only a few bytes, as no handshake or connection data is required.
 * Large number of concurrent connections. In most cases, a server can handle more concurrent active connections with websockets than the same number of plain HTTP request.
 
 ![](/assets/project_chat/websocket.png)
@@ -307,3 +307,5 @@ Our chat implementation is very rudimentary, but it is built on top of of some o
 * Improve the webpage adding some css styles.
 * Add users to the server and one-to-one messages.
 * Build and android client app, this can be done with any websockets or socket.io implementation in Java
+
+> This project was based on _socket.io_ chat tutorial

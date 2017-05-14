@@ -4,12 +4,17 @@ _Remember: With Great Power Comes Great Responsibility_
 The time has come, lets create something cool. For this first approach to a Node.js project, we will cover some basics of writing a _web server_ with node. As you may know, even if Node.js makes js as versatile as any other language, is commonly applied to web back-end development.
 
 ## Description
+Node.js, as a web server (or _back-end_) programming language, can be used to start an http server and listen to request to that server. While it is recommended to use along with an standalone http server such as Apache or Nginx, Node.js can work by itself.
 
-> TODO: Explain how http servers work vs php or other languages
+One of the reasons of using Node.js as a server language is the asynchronous I/O of Node, this allows to use the same thread for several concurrent requests, instead of spawning a new thread (and node runtime) per requests, like PHP or Java.
+
+This behavior makes a more efficient use of computing resources, at the cost of having to manually spawn several instances to make use of multiple cores.
+
+This first project will show how to work with a simple http server in Node.js, no setup is needed to start the server and no dependencies are required. However, this approach is not recommended for its use in production.
 
 ## Setup
 
-The best and simplest way to start a project with node js is opening a terminal, going to the folder where you want to put your code and write:
+The best and simplest way to start a project with Node.js is by opening a terminal, going to the folder where you want to put your code and write:
 
 ```bash
 npm init

@@ -302,7 +302,7 @@ If we try our chat again now... "Sucess"! when we write something the server ans
 
 We can now play opening several browsers and trying to chat. You can even try real chat with another computer in your local network!.
 
-## Extra improvements
+## Possible improvements
 Our chat implementation is very rudimentary, but it is built on top of of some of the most awesome web technologies, there are a lot of possible work to do if you want to improve your own chat service!
 * Improve the webpage adding some css styles.
 * Add users to the server and one-to-one messages.

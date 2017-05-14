@@ -997,3 +997,48 @@ Of course, not all loops and conditionals can be turned into functional-style wi
 
 
 ## Common Pitfalls
+JavaScript **is** an ugly programming language, making it asynchronous doesn't improve its cleanliness. However, with little practice it is possible to craft clean code with js. To partially avoid falling into the spiral of madness of desperation which is ugly JavaScript _hacky_ code here are some common mistakes that should be avoided when writing in Node.js
+
+### Callback Hell
+By far, the most well-known anti-pattern with node, is the _callback hell_, this happens when nested callbacks start generating a pyramid-code, which, by the way, you could compare to the 9 levels of Dante's Inferno:
+
+```js
+Purgatory(()=>{
+    FirstLevel(()=>{
+        SecondLevel(()=>{
+            ThirdLevel(()=>{
+                FourthLevel(()=>{
+                    FiftLevel(()=>{
+                        
+                    });
+                });
+            });
+        });
+    });
+});
+```
+There are several solutions to this, such as _Promises_, but avoiding a `callback hell` is surprisingly easy, this problem is, in fact, the same as nested loops, which you can find in almost any other language:
+```js
+for(...){
+    for(...){
+        if(...){
+            for(...){
+                ...
+            }
+        }
+    }
+}
+```
+And how would you solve that? Easy, use a bit of functions and OOP. The arrow functions help to bring OOP to callbacks.
+
+> **Pro Tip:** As we will see, most Callback-based APIs return a first parameter `err` followed by all the other parameters. This parameter is usually `null` or `undefined` unless there was a problem. This is needed because `try...catch` patterns doesn't work well with callbacks. Promises solve that problem
+
+
+### Variable comparisons
+JavaScript variables comparisons are weird, and node is no exception to it. The best way to avoid (some) pitfalls here is to follow a few simple rules and patterns:
+
+* Use triple equal `===` instead of simple equal `==`. The first compares type as well (so 5 is not `===` to "5")
+    * It may be useful, however, to use simple compare to compare with `null`, as it will return true for `undefined` and `null`
+* You can compare existence of objects (`if(!myVar) console.error(...)`), but beware of `0` `false` and empty strings, as those return `false` even if exist
+* Using `||` to provide default values is useful (`const myVar=otherVar || {}`) but you must be careful with `0` `false` and empty strings. For those cases you can simply use `equal` operators
+* `typeof` return object for `arrays` and all objects

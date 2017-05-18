@@ -993,9 +993,6 @@ Of course, not all loops and conditionals can be turned into functional-style wi
 
 > **Pro Tip 2:** The callbacks used can be, like any other callback, separate functions, resulting in a cleaner, more understandable code
 
-## Introduction to Node.js API
-
-
 ## Common Pitfalls
 JavaScript **is** an ugly programming language, making it asynchronous doesn't improve its cleanliness. However, with little practice it is possible to craft clean code with js. To partially avoid falling into the spiral of madness of desperation which is ugly JavaScript _hacky_ code here are some common mistakes that should be avoided when writing in Node.js
 

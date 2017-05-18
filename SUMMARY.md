@@ -10,6 +10,7 @@
 * [What is Node](basic-topics/what-is-node.md)
 * [Introduction to JS and ES6](basic-topics/introduction-to-js-and-es6.md)
 * [Writing JS with Node](basic-topics/writing-js-with-node.md)
+* [Introduction to Node API](basic-topics/introduction-to-node-api.md)
 
 ## Projects
 
@@ -28,4 +29,3 @@
 * [JavaScript "Features"](advanced-topics/javascript-features.md)
 * [JS Performance and Garbage Collector](advanced-topics/js-performance-and-garbage-collector.md)
 * Node.js development using Git
-

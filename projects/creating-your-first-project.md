@@ -84,7 +84,7 @@ To stop the server you can either close the terminal or press `Ctrl+C`
 
 > Optionally, you can add a script in your package.json: `"start": "node server.js"` to start your server using `npm start`
 
-Lets break down this example a bit:
+Lets break down this example:
 
 ```js
 const http = require('http');

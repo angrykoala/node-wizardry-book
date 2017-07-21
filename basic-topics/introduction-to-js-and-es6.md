@@ -38,7 +38,7 @@ Even if it is dynamically typed, JavaScript uses the following types for its var
 
 * **String**: text and characters \(`"Hello"`, `"a"`, `""`\).
 
-  * Strings can be delimited with `" "`,`' '` and, in ES6, with ````````, which allows _multiline_ strings and templates.
+  * Strings can be delimited with `" "`,`' '` and, in ES6, with ````````,  which allows _multiline_ strings and templates.
 
 * **Boolean**: either `true` or `false`.
 
@@ -996,7 +996,7 @@ for(let m in moneyInAccounts){
 }
 ```
 
-In this case, instead of performing three encapsulated operations, we do all the calculations in one go, so we need a `loop` block and an `if` nested block, with an external variable that we are going to modify in each iteration, making all the logic more obscure and easy to produce hidden changes in our code.   
+In this case, instead of performing three encapsulated operations, we do all the calculations in one go, so we need a `loop` block and an `if` nested block, with an external variable that we are going to modify in each iteration, making all the logic more obscure and easy to produce hidden changes in our code.  
 In the functional approach, however, each operation is completely independent of the others, without shared variables, you can note how we are only using one variable \(`totalDebt`\) and is a `const` variable, so we are not modifying it at any point. While in the second example we are using 2 temporal variables in the loop and the resulted variable must be a `let` variable.
 
 Of course, not all loops and conditionals can be turned into functional-style with JavaScript

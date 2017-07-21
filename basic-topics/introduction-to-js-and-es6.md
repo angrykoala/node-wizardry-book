@@ -4,15 +4,13 @@
 
 JavaScript is a relatively easy-to-learn language, with a syntax familiar to most programmers, as it's "similar" to C++, Java, or Python. Originally intended for browser-side scripting, there are plenty of tutorials and documentation to start programming in this messy and lovely language.
 
-In this introduction I will quickly introduce the basics, skipping the references to browser-side programming as are not needed for Node.js. I will also introduce the latest features in JavaScript \(ES6\) that are commonly left out in most guides. With Node.js we can use all the latests js features without fear, as long as our Node.js installation is up to date.
-
-For a full guide on js programming, use a full js programming tutorial/books, as a lot of thing are not included in this introduction.
+In this introduction we will cover the basics, skipping the references to browser-side programming as are not needed for Node.js. I will also introduce the latest features in JavaScript \(ES6\) that are commonly left out in most guides. With Node.js we can use all these features without fear, as long as our Node.js installation is up to date.
 
 You can tests all the snippets here by writing them on the node REPL.
 
 ## Variables
 
-Js is dynamically typed which means you don't have to specify what are you going to store in a variable. You also can also change the type of a variable at any moment.
+JS is dynamically typed which means you don't have to specify what are you going to store in a variable. You also can also change the type of a variable at any moment.
 
 Traditionally, `var` is used as keyword to define variables:
 
@@ -30,17 +28,17 @@ It is possible to directly assign a variable without `var`
 e=5; //This works, but it will create a global variable
 ```
 
-It is **not** recommended to use variables without declaring them first with `var` to avoid unknown global variables.
+It is **not** recommended to use variables without declaring them first with `var` to avoid hidden global variables.
 
 ### Variable types
 
 Even if it is dynamically typed, JavaScript uses the following types for its variables:
 
-* **Number**: used for integer and float numbers \(`5`, `0`, `-3`, `4.3`\).
+* **Number**: integer and float numbers \(`5`, `0`, `-3`, `4.3`\).
 
-* **String**: used for text and characters \(`"Hello"`, `"a"`, `""`\).
+* **String**: text and characters \(`"Hello"`, `"a"`, `""`\).
 
-  * Strings can be delimited with `" "`,`' '` and, in ES6, with \`\`\`\`\`\`\`\`, which allows _multiline_ strings.
+  * Strings can be delimited with `" "`,`' '` and, in ES6, with ````````, which allows _multiline_ strings and templates.
 
 * **Boolean**: either `true` or `false`.
 
@@ -48,7 +46,7 @@ Even if it is dynamically typed, JavaScript uses the following types for its var
 
   * It is possible to set a variable to _undefined_ by writing: `var a=undefined`. 
 
-* **Null**: Represents an invalid or non-defined object. While similar to _undefined_, _null_ values must be set explicitly.
+* **Null**: Represents a variable with no value. While similar to _undefined_, _null_ values must be set explicitly.
 
   * To set a variable to null, `var a=null`.
 
@@ -80,31 +78,35 @@ obj={} // Error
 If your application require full retro compatibility \(old browsers or node &lt;4\) `var` should be used instead. However, for modern js development `let` and `const` are recommended. For this guide we will use `let` and `const`.
 
 ## Operators
-Most operators work in a similar way as they work in Java or other languages, with arithmetic operations (`+`,`-`,`*`,`/`,...), logical operators (`||`, `&&`, `!`) and bitwise operators (`&`,`|`,`~`,...) among others (`==`,`++`).
+
+Most operators work in a similar way as they work in Java or other languages, with arithmetic operations \(`+`,`-`,`*`,`/`,...\), logical operators \(`||`, `&&`, `!`\) and bitwise operators \(`&`,`|`,`~`,...\) among others \(`==`,`++`\).
 
 While most operators work as expected, there are a few interesting cases:
 
 **Comparison operator**
 
 The first difference is the **comparison** operator, in js there are 2 operators: `==` and `===`. The first one will return true if the values are equal, even if the type is different, the second one will also check the type:
+
 ```js
 5=="5"; //true
 5==="5"; //false
 ```
-It is recommended to use the `===` operator whenever possible. Not equal operators work the same way (`!=`, `!==`).
 
-**typeof operator**
+It is recommended to use the `===` operator whenever possible. Not equal operators work the same way \(`!=`, `!==`\).
+
+**typeof operator**  
 The operator `typeof` will return the type of the variable as a string:
+
 ```js
 typeof 5; // "number"
 typeof {}; // "object"
 ```
+
 This allows you to change the behavior of your code depending of the type of the variable or check that a certain variable is the correct type. Remember that any non-primitive type will return `object`.
 
 > **Pro Tip:** The operator `instanceof` can be used to check the class of an object.
-
-
-> A full list of operators can be found in https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Expressions_and_Operators
+>
+> A full list of operators can be found in [https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Expressions\_and\_Operators](https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Expressions_and_Operators)
 
 ## Data Structures
 
@@ -386,7 +388,7 @@ salute("Marvin"); // "Hello Marvin"
 
 When a parameters is not passed, instead of failing or throwing an error, that parameter is simply an _undefined_ function. because of this, we can simply compare with _undefined_ and modify the function behaviour.
 
-Another common way of dealing with with parameters overloading is using _default_ values. The traditional way is using the operator `|| `:
+Another common way of dealing with with parameters overloading is using _default_ values. The traditional way is using the operator `||`:
 
 ```js
 function salute(name,surname){
@@ -397,7 +399,7 @@ function salute(name,surname){
 salute("Marvin"); // "Hello Marvin "
 ```
 
-The operator `|| ` will assign the first operand if is _truthy, _if not it will assign the second operand \(""\). This works for strings, as any string is interpreted as truthy_ _\(event empty string\), while _undefined_ or _null_ is interpreted as falsy. This will not work for numbers, as a 0 is falsy while any other number is truthy.
+The operator `||` will assign the first operand if is _truthy, \_if not it will assign the second operand \(""\). This works for strings, as any string is interpreted as truthy_ _\(event empty string\), while \_undefined_ or _null_ is interpreted as falsy. This will not work for numbers, as a 0 is falsy while any other number is truthy.
 
 In ES6 there is a more intuitive way to define default variables:
 
@@ -407,10 +409,9 @@ function salute(name,surname=""){
 }
 
 salute("Marvin"); // "Hello Marvin "
-
 ```
 
-**Rest parameters**    
+**Rest parameters**  
 ES6 implements _rest parameters_, which allows you to have n parameters in a function, which will be passed as an array:
 
 ```js
@@ -424,7 +425,7 @@ setAliases("The Doctor","John Smith", "Doctor Who?", "The Oncoming Storm");
 // "A.K.A. ["John Smith", "Doctor Who?", "The Oncoming Storm"]"
 ```
 
-Rest parameters can be used along with normal parameters, but they must be declared at the end (and only one array).
+Rest parameters can be used along with normal parameters, but they must be declared at the end \(and only one array\).
 
 ### The Magic of Callbacks
 
@@ -450,7 +451,7 @@ Now you may be thinking. Couldn't I just execute `panic` and pass the result as 
 
 The answer, of course, is the asyncronous magic of JavaScript. Remember the "Node.js uses an event-driven, non-blocking I/O model"? But, What does non-blocking I/O means?.
 
-For those that already worked with JavaScript (e.g. JQuery), callbacks may be a weird quirk of the language that sometimes must be used. However, in Node they are heavily used in almost every API.
+For those that already worked with JavaScript \(e.g. JQuery\), callbacks may be a weird quirk of the language that sometimes must be used. However, in Node they are heavily used in almost every API.
 
 I will not bore you anymore with "_Node.js is cool because it does weird async stuff_" anymore, just keep in mind that studying is important, but callbacks are _importanter_.
 
@@ -525,7 +526,7 @@ function awesomeTask(){
 In this case, greetings is not defined. As greetings is not in the scope of _myCallback_. As you can see, scopes depends on where the variables and code blocks are defined. Scopes are important when it comes to working with callbacks. This is not everything when it comes to scopes, and we will see more of them in the future.
 
 > Remember the difference between **var** and **let**? It basically comes down to scopes.
-
+>
 > **Pro Tip:** To avoid the so called _callback hell_, you must structure the nested callbacks in separate functions and modules.
 
 ### Arrow functions
@@ -540,7 +541,7 @@ setTimeout(()=>{
 
 Arrow functions where added to provide two small, but useful, features against traditional anonymous functions:
 
-* More compact syntax: While it may seem of little importance, when it comes to declare callbacks (and callbacks in callbacks)  compact syntax greatly improves readability.
+* More compact syntax: While it may seem of little importance, when it comes to declare callbacks \(and callbacks in callbacks\)  compact syntax greatly improves readability.
 * Binding the `this`scope to the callback: This is important when working with classes, as we will see in the following section.
 
 Arrow functions also provide an alternative syntax for only returning variables:
@@ -554,6 +555,7 @@ name=>"Hello "+name;
 These, again, are _"sugar"_ syntax to reduce verbosity and make callbacks more compact. Arrow functions are not required, and are only compatible with ES6, but for this guide we will stick to them, as it results in a more readable code.
 
 ## The Treachery of Classes
+
 > Ceci n'est pas une classe
 
 Let's start this section by looking to a simple class in JavaScript:
@@ -579,6 +581,7 @@ azog.greet(); // "Urhgz"
 azog.getName(); // "Arzog"
 azog.name; // "Arzog"
 ```
+
 _Orc class_
 
 As you can see, classes are pretty straightforward... Except they aren't classes at all.
@@ -598,9 +601,10 @@ Orc.prototype.getName=function(){
     return this.name;
 }
 ```
+
 _Orc prototype_
 
-As you can see, this is a more verbose and complex syntax, and it gets worse with inheritance. Again, ES6 implemented a sugar-syntax (`class` keyword) which increases readability, but is still good to know that classes are, in fact, `functions` and that the `new` keyword creates an object using the function as some kind of constructor which defines the prototype methods and attributes which the instantiated object inherits. For this guide we will, again, use the modern ES6 syntax.
+As you can see, this is a more verbose and complex syntax, and it gets worse with inheritance. Again, ES6 implemented a sugar-syntax \(`class` keyword\) which increases readability, but is still good to know that classes are, in fact, `functions` and that the `new` keyword creates an object using the function as some kind of constructor which defines the prototype methods and attributes which the instantiated object inherits. For this guide we will, again, use the modern ES6 syntax.
 
 Note how the instance of a class is a simple js object with the attributes and methods defined in the class. This means that you may redefined any attribute and method afterwards, like in any other object. You may think of classes as "object generators" and objects as loose instances of a class. This allows for a much more dynamic programming, but at the cost of worse class encapsulation.
 
@@ -608,11 +612,11 @@ In the first example, you will notice that we define the attributes directly by 
 
 Due to the permissive nature of js classes, is better to avoid "hacks" or weird implementations to avoid confusion, and stick, when possible, to clear and well-defined implementations.
 
-> **Pro Tip:** While private members and other features are not part of js, playing around with scopes and Node.js _import_ system makes possible to emulate private variables in some cases (We will comment this in the following chapter)
+> **Pro Tip:** While private members and other features are not part of js, playing around with scopes and Node.js _import_ system makes possible to emulate private variables in some cases \(We will comment this in the following chapter\)
 
 ### Classes Inheritance
 
-OOP is not OOP without some inheritance. Js classes (and prototypes) allow inheritance, for which, again, we have a pretty straightforward syntax:
+OOP is not OOP without some inheritance. Js classes \(and prototypes\) allow inheritance, for which, again, we have a pretty straightforward syntax:
 
 ```js
 class UrukHai extends Orc{
@@ -652,6 +656,7 @@ class Troll extends BigMonster{
     }
 }
 ```
+
 _Example of and enforced abstract class_
 
 These limitations, again, enforces a more dynamic and loose implementation of OOP instead of the rigid structure you'll find in languages such as Java.
@@ -665,7 +670,7 @@ UrukHai.prototype = Object.create( Orc.prototype );
 Which is as intuitive as writing assembly with unicode characters, including emoji.
 
 > **Pro Tip 1:** Unlike other languages such as Java, in js you **always** need to use `this` when referring to the class methods or attributes.
-
+>
 > **Pro Tip 2:** JavaScript doesn't support multiple constructors or method overloading, it follows the same rules as normal functions.
 
 ### instanceof
@@ -732,7 +737,7 @@ takeBreakfast(){
 }
 ```
 
-These two options work fine, but both are a bit _"hacky"_, and while they are still used (mainly due to compatibility), the third option, the _arrow function_, solves the problem, as an arrow function automatically binds _this_:
+These two options work fine, but both are a bit _"hacky"_, and while they are still used \(mainly due to compatibility\), the third option, the _arrow function_, solves the problem, as an arrow function automatically binds _this_:
 
 ```js
 takeBreakfast(){
@@ -746,6 +751,7 @@ takeBreakfast(){
 As you can see, arrow functions are not only as a visual improvements for anonymous syntax, they slightly simplify scoping rules in the same way `let` improves over `var`.
 
 ### Static Methods
+
 ES6 classes implements _static methods_, which you may call without creating an instance of the class:
 
 ```js
@@ -762,11 +768,12 @@ nord.shout(); // Error: undefined
 Dragonborn.shout(); // "Fus Ro Dah"
 ```
 
-Remember that within a _static_ method you cannot access _this_. 
+Remember that within a _static_ method you cannot access _this_.
 
 > You cannot create static variables.
 
 ### Setters and Getters
+
 ES6 implements setters and getters functions for classes and objects, these allows to use functions as variables, acting as something similar as a _proxy_:
 
 ```js
@@ -780,20 +787,20 @@ class Wizard{
             this.type="white";
         } else this.type="grey";
     }
-    
+
     get name(){
         return this.firstName+" the "+this.type;
     }
     //...
 }
- 
+
 const gandalf=new Wizard("Gandalf");
 gandalf.name; // "Gandalf the grey"
 gandalf.level=11;
 gandalf.name; // "Gandalf the white"
 ```
 
-In this case, we use them to achieve a more readable syntax compared to classic setters and getters (`setLevel`, `getName`). Keep in mind that overusing _setters_ and _getters_ may lead to confusion and performance issues, as there is no clear hints on what is a function and what a variable. It's better to use them in specific cases where we want to specifically hide the internal representation of a variable.
+In this case, we use them to achieve a more readable syntax compared to classic setters and getters \(`setLevel`, `getName`\). Keep in mind that overusing _setters_ and _getters_ may lead to confusion and performance issues, as there is no clear hints on what is a function and what a variable. It's better to use them in specific cases where we want to specifically hide the internal representation of a variable.
 
 > **Pro Tip:** Setters and Getters are also useful to log changes to a variable for debugging purposes. To do it,, change the internal variable name, and create setters and getters with the original name.
 
@@ -813,6 +820,7 @@ try{
     console.error(e.message); // Logs the error message
 }
 ```
+
 _try...catch example_
 
 Common operations that may fail are file handling, type errors and connections. You can also throw errors yourself. The `catch` block returns the thrown variable, while you can throw anything, you will usually get an `Error` object. You can access the message of the error with `e.message`.
@@ -820,6 +828,7 @@ Common operations that may fail are file handling, type errors and connections. 
 You can also use `finally` to execute code **after** the `try...catch`, regardless of the result.
 
 ### Throwing errors
+
 You may want to throw your own errors when something goes wrong, so you can properly handle it with `try...catch` to avoid using conditionals or error codes to handle them:
 
 ```js
@@ -836,6 +845,7 @@ try{
 ```
 
 ### Callback Error Handling
+
 Callbacks are a problem when it comes to error handling because you cannot ensure a thrown error to be caught if the callback is called asynchronously after the `try...catch` block is over.
 
 The first approach to solve this problem, used by most APIs and libraries, is to send the error as the first parameter of all callbacks:
@@ -857,10 +867,12 @@ When implementing a library or code using callbacks, it's better to keep this st
 > Promises are another style of handling asynchronous code. One of the main improvements is that you can catch Promises and handle errors with try...catch blocks, we will see more about promises in the chapter [Promises](advanced-topics/promises)
 
 ## ES6 fuctional-style methods
+
 ES6 introduced several methods and utilities in standalone JavaScript. Most are quite straightforward and simple to use, however, the following array methods where added to provide a more functional programming style, and generally produces a cleaner, more encapsulated code avoiding obscure loops, but using callbacks:
 
-**map**
+**map**  
 Returns a new array with the same size as the original arra. It is useful to modify all the content of an array:
+
 ```js
 const ages=[10,12,5];
 
@@ -873,7 +885,7 @@ const mySecondArr=myArr.map((element)=>{
 
 The callback has one parameter, the array element, and the returned element will be the element in new array in the same position. In this example we are adding one to all the ages of the original array.
 
-**filter**
+**filter**  
 It returns an array with **only** the elements that are accepted by the callback. This function is particularly useful to modify the array content without having to handle pointers or counters manually:
 
 ```js
@@ -886,7 +898,7 @@ const allowedAges=ages.filter((age)=>{
 // allowedAges = [20,19]
 ```
 
-**reduce**
+**reduce**  
 Works in the same way as map, but in this case it returns a single variable:
 
 ```js
@@ -895,10 +907,10 @@ const ages=[6,12,10];
 const totalAge=ages.reduce((total,current)=>{
     return total+current;
 },0);
+```
 
-``` 
-The function accepts two parameters, first the callback to be executed for each element and second the initial value of the returned variable.
-With each execution of the callback, two parameters will be passed to it, the accumulated value of the previous executions (beginning with the initial value) and the value of the current element. The returned variable of the function will be sent to the next function.
+The function accepts two parameters, first the callback to be executed for each element and second the initial value of the returned variable.  
+With each execution of the callback, two parameters will be passed to it, the accumulated value of the previous executions \(beginning with the initial value\) and the value of the current element. The returned variable of the function will be sent to the next function.
 
 In the previous example, all the ages of the array are added into a single number, the total age, which is then returned. As you can see, the initial value is 0.
 
@@ -926,7 +938,7 @@ const peopleObject=peopleArray.reduce((total,current)=>{
 }*/
 ```
 
-**Concatenating array methods**
+**Concatenating array methods**  
 All these methods are useful to perform operations such as parsing or data manipulation avoiding loops, but the main advantage over simple loops is that the returned array can be used to perform another method, leaving patters such as _"map-reduce"_ to perform operations.
 
 For example, we can easily parse, filter and format data in one go:
@@ -951,12 +963,13 @@ const totalDebt=moneyInAccounts.map(payMonth).filter(isNegative).reduce(accumula
 // totalDebt=400
 ```
 
-Here, to calculate how much money we owe the bank after reducing our expenses from all the acocunts, we perform 3 operations:
-1. We reduce our expenses (400) per account, this results in `[-300,-100,1200]`
-2. We only need the accounts with negative balance, so we filter, resulting in `[-300,-100]`
+Here, to calculate how much money we owe the bank after reducing our expenses from all the acocunts, we perform 3 operations:  
+1. We reduce our expenses \(400\) per account, this results in `[-300,-100,1200]`  
+2. We only need the accounts with negative balance, so we filter, resulting in `[-300,-100]`  
 3. Finally, we accumulate our debt of all the accounts, 300 and 100 gets us a total debt of 400
 
 Compare, the same logic, using a loop:
+
 ```js
 const moneyInAccounts=[100,300,1600];
 
@@ -983,20 +996,21 @@ for(let m in moneyInAccounts){
 }
 ```
 
-In this case, instead of performing three encapsulated operations, we do all the calculations in one go, so we need a `loop` block and an `if` nested block, with an external variable that we are going to modify in each iteration, making all the logic more obscure and easy to produce hidden changes in our code. 
-In the functional approach, however, each operation is completely independent of the others, without shared variables, you can note how we are only using one variable (`totalDebt`) and is a `const` variable, so we are not modifying it at any point. While in the second example we are using 2 temporal variables in the loop and the resulted variable must be a `let` variable.
+In this case, instead of performing three encapsulated operations, we do all the calculations in one go, so we need a `loop` block and an `if` nested block, with an external variable that we are going to modify in each iteration, making all the logic more obscure and easy to produce hidden changes in our code.   
+In the functional approach, however, each operation is completely independent of the others, without shared variables, you can note how we are only using one variable \(`totalDebt`\) and is a `const` variable, so we are not modifying it at any point. While in the second example we are using 2 temporal variables in the loop and the resulted variable must be a `let` variable.
 
 Of course, not all loops and conditionals can be turned into functional-style with JavaScript
 
-
 > **Pro Tip 1:** The original arrays are not modified when using map, reduce or filter
-
+>
 > **Pro Tip 2:** The callbacks used can be, like any other callback, separate functions, resulting in a cleaner, more understandable code
 
 ## Common Pitfalls
+
 JavaScript **is** an ugly programming language, making it asynchronous doesn't improve its cleanliness. However, with little practice it is possible to craft clean code with js. To partially avoid falling into the spiral of madness of desperation which is ugly JavaScript _hacky_ code here are some common mistakes that should be avoided when writing in Node.js
 
 ### Callback Hell
+
 By far, the most well-known anti-pattern with node, is the _callback hell_, this happens when nested callbacks start generating a pyramid-code, which, by the way, you could compare to the 9 levels of Dante's Inferno:
 
 ```js
@@ -1006,7 +1020,7 @@ Purgatory(()=>{
             ThirdLevel(()=>{
                 FourthLevel(()=>{
                     FiftLevel(()=>{
-                        
+
                     });
                 });
             });
@@ -1014,7 +1028,9 @@ Purgatory(()=>{
     });
 });
 ```
+
 There are several solutions to this, such as _Promises_, but avoiding a `callback hell` is surprisingly easy, this problem is, in fact, the same as nested loops, which you can find in almost any other language:
+
 ```js
 for(...){
     for(...){
@@ -1026,16 +1042,20 @@ for(...){
     }
 }
 ```
+
 And how would you solve that? Easy, use a bit of functions and OOP. The arrow functions help to bring OOP to callbacks.
 
 > **Pro Tip:** As we will see, most Callback-based APIs return a first parameter `err` followed by all the other parameters. This parameter is usually `null` or `undefined` unless there was a problem. This is needed because `try...catch` patterns doesn't work well with callbacks. Promises solve that problem
 
-
 ### Variable comparisons
-JavaScript variables comparisons are weird, and node is no exception to it. The best way to avoid (some) pitfalls here is to follow a few simple rules and patterns:
 
-* Use triple equal `===` instead of simple equal `==`. The first compares type as well (so 5 is not `===` to "5")
-    * It may be useful, however, to use simple compare to compare with `null`, as it will return true for `undefined` and `null`
-* You can compare existence of objects (`if(!myVar) console.error(...)`), but beware of `0` `false` and empty strings, as those return `false` even if exist
-* Using `||` to provide default values is useful (`const myVar=otherVar || {}`) but you must be careful with `0` `false` and empty strings. For those cases you can simply use `equal` operators
+JavaScript variables comparisons are weird, and node is no exception to it. The best way to avoid \(some\) pitfalls here is to follow a few simple rules and patterns:
+
+* Use triple equal `===` instead of simple equal `==`. The first compares type as well \(so 5 is not `===` to "5"\)
+  * It may be useful, however, to use simple compare to compare with `null`, as it will return true for `undefined` and `null`
+* You can compare existence of objects \(`if(!myVar) console.error(...)`\), but beware of `0` `false` and empty strings, as those return `false` even if exist
+* Using `||` to provide default values is useful \(`const myVar=otherVar || {}`\) but you must be careful with `0` `false` and empty strings. For those cases you can simply use `equal` operators
 * `typeof` return object for `arrays` and all objects
+
+
+

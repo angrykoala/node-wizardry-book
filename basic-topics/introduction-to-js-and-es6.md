@@ -38,13 +38,13 @@ Even if it is dynamically typed, JavaScript uses the following types for its var
 
 * **String**: text and characters \(`"Hello"`, `"a"`, `""`\).
 
-  * Strings can be delimited with `" "`,`' '` and, in ES6, with ````````,  which allows _multiline_ strings and templates.
+  * Strings can be delimited with `" "`,`' '` and, in ES6, with \`\`,  which allows _multiline_ strings and templates.
 
 * **Boolean**: either `true` or `false`.
 
 * **Undefined**: used for a non-defined variable \(e.g. `var a;`\).
 
-  * It is possible to set a variable to _undefined_ by writing: `var a=undefined`. 
+  * It is possible to set a variable to _undefined_ by writing: `var a=undefined`.
 
 * **Null**: Represents a variable with no value. While similar to _undefined_, _null_ values must be set explicitly.
 
@@ -288,7 +288,7 @@ for (let key in obj) {
     // This if is required to ensure that we only iterate in the object properties, and not the parent
 
     // obj[key] is the value
-  } 
+  }
 }
 ```
 
@@ -643,7 +643,7 @@ There aren't abstract classes either. You can emulate them by throwing errors in
 ```js
 class BigMonster{
     constructor(){
-        if (new.target === BigMonster) { 
+        if (new.target === BigMonster) {
             // true if "new" calls BigMonster constructor
             // throw error here
         }
@@ -1056,6 +1056,3 @@ JavaScript variables comparisons are weird, and node is no exception to it. The 
 * You can compare existence of objects \(`if(!myVar) console.error(...)`\), but beware of `0` `false` and empty strings, as those return `false` even if exist
 * Using `||` to provide default values is useful \(`const myVar=otherVar || {}`\) but you must be careful with `0` `false` and empty strings. For those cases you can simply use `equal` operators
 * `typeof` return object for `arrays` and all objects
-
-
-

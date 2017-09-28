@@ -21,11 +21,11 @@
 
 ## Advanced Topics
 
-* Working with several node versions
+* [Working with several node versions](advanced-topics/working-with-several-node-versions.md)
 * [Managing your project](advanced-topics/managing-your-project.md)
-* Promises in JS
-* Package versioning
-* Testing
+* [Promises in JS](advanced-topics/promises-in-js.md)
+* [Package versioning](advanced-topics/package-versioning.md)
+* [Testing](advanced-topics/testing.md)
 * [JS Performance and Garbage Collector](advanced-topics/js-performance-and-garbage-collector.md)
 * Node.js development using Git
 

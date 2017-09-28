@@ -106,42 +106,89 @@ The `catch` block will be called if:
 
 Note how we are not storing the promise anymore, we can easily concatenate then and catch blocks, as those also return promises.
 
-> **Pro-tip: **promise.catch\(...\) can also be used standalone, but in this case it won't be executed if an error is thrown inside the _then_ block, to provide a proper error handling, then...catch should be used as described before.
+> **Pro tip: **promise.catch\(...\) can also be used standalone, but in this case it won't be executed if an error is thrown inside the _then_ block, to provide a proper error handling, then...catch should be used as described before.
 
 ### Advanced usage
 
 While one of the most interesting features is the error handling, promises can also increase your code legibility, consider the following example, where we want to perform several asynchronous operations using promises:
 
 ```js
-readFileWithPromise(path){
+function readFileWithPromise(path){
     // Same as before
 }
 
-readAndProcessFileData(path){
+function processFileData(fileData){
     // Async process of data, returns a promise
 }
 
-sendProcessedData(user, processedData){
+function sendProcessedData(user, processedData){
     // sends data to given user, returns a promise
 }
 
-readProcessAndSendData(user, path){
-    readFileWithPromise(path).then((data)=>{
-    
-    
+function readProcessAndSendData(user, path){
+    return readFileWithPromise(path).then(fileData).then((processedData)=>{
+        return sendProcessedData(user,processedData);    
     });
-
-
-
-
 }
 
 
+
+
+readProcessAndSendData(myUser, myPath).then(()=>{
+     console.log("Congrats");
+ }).catch((err)=>{
+     console.error("Error",err);
+ });
+
 ```
 
+As you can see, returning a Promise inside a Promise will automatically be handled, and is no need to use `then` for `sendProcessedData`, finally we don't have to care about errors, as all the thrown errors and rejected promises will be caught in the last catch block.
 
+> **Pro Tip:** Inside a then block, you can either return a Promise or a variable, if the returning value is a Promise, it will automatically be resolved, and the result will be returned.
 
+> **Pro Tip 2: **If a Promise is resolved before the `then` block is declared, don\`t worry, the "resolved" state is stored, and then will be executed immediately when then is declared
 
+> **Pro Tip 3:** A Promise can have multiple `then` and `catch` blocks, and they could be executed multiple times, but it is not recommended, as doing so will contribute to confusion, anarchy, and kitten sacrifices. We don't want to sacrifice kittens, you monster.
 
 **Promise.all**
+
+Sometimes, we want to perform a arbitrary number of asynchronous operations at the same time, and execute a callback when all of them have finished. Using plain callbacks this could prove challenging, to the point that libraries such as async where used to solve this problem.
+
+With Promises, however, this problem is trivial, as we can store promises in arrays and do whatever we want with them, and the Promises interface itself gives us the `Promise.all` method. The resulting code is usually quite readable and with a functional-programming style:
+
+```js
+// Sends an email to each user of given list, return promise
+function sendEmailsTo(users){
+    promises=users.map((user)=>{
+        return sendEmail(user); //This function send an email asynchronously, returns a promise
+    });
+    return Promise.all(promises)
+}
+
+sendEmailsTo(["user1@mail.com","user2@mail.com"]).then(()=>{
+    console.log("All emails were sent");
+});    
+```
+
+This examples uses `map` to generate an array of all the promises resulting after executing `sendEmail` with each user, `Promise.all` expects an array of promises, so this pattern is quite handy.
+
+As you can imagine, `Promise.all` will result in a rejected promise if _any_ of the promises fail. This can be changed if we add a catch block to each promise inside `sendEmail` \(or using then...catch instead of returning sendEmail directly\)
+
+**Promise.resolve** and **Promise.reject**
+
+There are some moments when you may want to immediately return a Promise, resolved or rejected, instead of creating a new Promise with its callback.
+
+`Promise.resolve()` and `Promise.reject()` do just that, if arguments are passed, those will be the result or error returned by the promise. This is useful to maintain a Promised-based interface, even if you don't need to perform an asynchronous task \(e.g. cached data, error handling...\)
+
+
+
+### Final considerations about promises
+
+Keep in mind that promises are intended to solve the problems of nesting callbacks and complex error handling, but for simple operations \(e.g. just one callback\) Promises are too verbose, as we saw in the first examples. Because of this, plain callbacks are still useful, as a more direct and simple way of handling asynchronous code. Don't  waste time trying to use promises everywhere, and instead use them where you can see an actual improvement. 
+
+Also remember that is easier \(and cleaner\) to wrap a Promise around a callback than the other way around. So usually external interfaces \(e.g. the API of a library\) are still callbacks-based instead of promises, even if promises are being used internally.
+
+> **Pro Tip:** Some interfaces return a Promise if no callback is passed, allowing to used both patters seamlessly
+
+
 

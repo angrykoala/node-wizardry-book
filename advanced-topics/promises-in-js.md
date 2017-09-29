@@ -201,13 +201,13 @@ sendEmailsTo(["user1@mail.com","user2@mail.com"]).then(()=>{
 });
 ```
 
-This examples uses `map` to generate an array of all the promises resulting after executing `sendEmail` with each user, `Promise.all` expects an array of promises, so this pattern is quite handy.
+This examples uses `map` to generate an array of all the promises resulting after executing `sendEmail` with each user, `Promise.all` expects an array of promises, so this pattern is quite handy. It will return a promise that will be resolved when all the promises in the array are resolved.
 
 As you can imagine, `Promise.all` will result in a rejected promise if _any_ of the promises fail. This can be changed if we add a catch block to each promise inside `sendEmail` \(or using then...catch instead of returning sendEmail directly\)
 
 **Promise.resolve** and **Promise.reject**
 
-There are some moments when you may want to immediately return a Promise, resolved or rejected, instead of creating a new Promise with its callback.
+There are some moments in life when you may want to immediately return a Promise, either resolved or rejected, instead of creating a new Promise with its callback.
 
 `Promise.resolve()` and `Promise.reject()` do just that, if arguments are passed, those will be the result or error returned by the promise. This is useful to maintain a Promised-based interface, even if you don't need to perform an asynchronous task \(e.g. cached data, error handling...\)
 
@@ -217,7 +217,7 @@ Keep in mind that promises are intended to solve the problems of nesting callbac
 
 Also remember that is easier \(and cleaner\) to wrap a Promise around a callback than the other way around. So usually external interfaces \(e.g. the API of a library\) are still callbacks-based instead of promises, even if promises are being used internally.
 
-> **Pro Tip:** Some interfaces return a Promise if no callback is passed, allowing to used both patters seamlessly
+> **Pro Tip:** Some interfaces return a Promise if no callback is passed, allowing to use both patters seamlessly
 
 
 

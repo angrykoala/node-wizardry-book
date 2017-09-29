@@ -2,17 +2,17 @@
 
 > I promise you, this is not that hard
 
-Promises are a way of handling callbacks without falling into the dreaded "_callback hell_" introduced in ES6. Before trying to learn promises I recommend having a deep understanding on _callbacks_, as promises make use of them.
+Promises are a way of handling asynchronous code without falling into the dreaded "_callback hell_", they were introduced natively in ES6. Before trying to learn promises I recommend having a deep understanding on _callbacks_, as promises make use of them.
 
 ### The Problem
 
-Callbacks are a neat way of handling asynchronous workflow, just by adding a anonymous function. However, in a complex environment, with complex workflows, this can easily turn into a mess
+Callbacks are a neat way of handling asynchronous workflow, just by adding an anonymous function. However, in a complex environment, with complex workflows, this can easily turn into a mess:
 
 ```js
-myfunction1((err,cb)=>{
-    if(err) #handle err
-    myfunction2((err,cb)=>{
-        if(err) #handle another err
+myfunction1((err,cb) => {
+    if(err) // handle err
+    myfunction2((err,cb) => {
+        if(err) // handle another err
         myfunction3(cb);
     });
 });
@@ -20,19 +20,19 @@ myfunction1((err,cb)=>{
 
 _Callback Hell_
 
-As you can see, each function we call represents a new nesting level, and with each level we need to send the `err` parameter and check is _undefined_. While we can reduce nesting by using named functions and a clean organisation, errors must be checked on each level. As an error thrown in a callback **won't** be caught by a `try...catch` on top level, so a variable must be carried over every callback.
+As you can see, each function we call represents a new nesting level, and with each level we need to send the `err` parameter and check that is _undefined_. While we can reduce nesting by using named functions and a clean organisation, errors must be checked on each level. As an error thrown in a callback **won't** be caught by a `try...catch` on top level, so a variable must be carried over every callback.
 
 ### The solution
 
 > Or at least **one** solution
 
-Promises were created to improve legibility on complex asynchronous workflows, properly handle errors and avoid overly-nested callback.
+Promises were created to improve legibility on complex asynchronous workflows, properly handling errors and avoid overly-nested callbacks.
 
-A **promise** is a data structure that represents an asynchronous process that may or may not have finished yet. A promise may be returned  from an asynchronous process, the same way a synchronous function would return a variable:
+A **promise** is a data structure that represents an asynchronous process that may or may not have finished yet. A promise may be returned from an asynchronous process, the same way a synchronous function would return a variable:
 
 ```js
 const myPromise=asyncFunction(); 
-//myPromise contains the state of the process and the resulting value
+// myPromise contains the state of the process and the resulting value
 ```
 
 To access a promise result, we use `then`, along with a callback:
@@ -126,28 +126,59 @@ function sendProcessedData(user, processedData){
 }
 
 function readProcessAndSendData(user, path){
-    return readFileWithPromise(path).then(fileData).then((processedData)=>{
+    return readFileWithPromise(path).then(processFileData).then((processedData)=>{
         return sendProcessedData(user,processedData);    
     });
 }
-
-
-
 
 readProcessAndSendData(myUser, myPath).then(()=>{
      console.log("Congrats");
  }).catch((err)=>{
      console.error("Error",err);
  });
-
 ```
 
 As you can see, returning a Promise inside a Promise will automatically be handled, and is no need to use `then` for `sendProcessedData`, finally we don't have to care about errors, as all the thrown errors and rejected promises will be caught in the last catch block.
 
+Compare the previous example with the same code using a callback-based interface:
+
+```js
+function readFileWithPromise(path, cb){
+    // reads file with callback interface
+}
+
+function processFileData(fileData, cb){
+    // Async process of data, calls cb at the end
+}
+
+function sendProcessedData(user, processedData, cb){
+    // sends data to given user, calls cb at the end
+}
+
+function readProcessAndSendData(user, path, cb){
+    readFileWithPromise(path,(err,fileData)=>{
+        if(err) return cb(err);
+        processFileData(fileData,(err, processedData)=>{
+            if(err) return cb(err);
+            sendProcessedData(user,processedData,(err)=>{
+                return cb(err);
+            });
+        });
+    });
+}
+
+readProcessAndSendData(myUser, myPath,(err)=>{
+     if(err) console.error("Error",err);
+     else console.log("Congrats");
+ });
+```
+
+As you can see, not only you end up with a much more messy code, with nested callbacks, but you need to be extra-careful with the workflow, as you need to call `cb` several times to handle all errors, which must be handled mannually on each level
+
 > **Pro Tip:** Inside a then block, you can either return a Promise or a variable, if the returning value is a Promise, it will automatically be resolved, and the result will be returned.
-
+>
 > **Pro Tip 2: **If a Promise is resolved before the `then` block is declared, don\`t worry, the "resolved" state is stored, and then will be executed immediately when then is declared
-
+>
 > **Pro Tip 3:** A Promise can have multiple `then` and `catch` blocks, and they could be executed multiple times, but it is not recommended, as doing so will contribute to confusion, anarchy, and kitten sacrifices. We don't want to sacrifice kittens, you monster.
 
 **Promise.all**
@@ -167,7 +198,7 @@ function sendEmailsTo(users){
 
 sendEmailsTo(["user1@mail.com","user2@mail.com"]).then(()=>{
     console.log("All emails were sent");
-});    
+});
 ```
 
 This examples uses `map` to generate an array of all the promises resulting after executing `sendEmail` with each user, `Promise.all` expects an array of promises, so this pattern is quite handy.
@@ -180,11 +211,9 @@ There are some moments when you may want to immediately return a Promise, resolv
 
 `Promise.resolve()` and `Promise.reject()` do just that, if arguments are passed, those will be the result or error returned by the promise. This is useful to maintain a Promised-based interface, even if you don't need to perform an asynchronous task \(e.g. cached data, error handling...\)
 
-
-
 ### Final considerations about promises
 
-Keep in mind that promises are intended to solve the problems of nesting callbacks and complex error handling, but for simple operations \(e.g. just one callback\) Promises are too verbose, as we saw in the first examples. Because of this, plain callbacks are still useful, as a more direct and simple way of handling asynchronous code. Don't  waste time trying to use promises everywhere, and instead use them where you can see an actual improvement. 
+Keep in mind that promises are intended to solve the problems of nesting callbacks and complex error handling, but for simple operations \(e.g. just one callback\) Promises are too verbose, as we saw in the first examples. Because of this, plain callbacks are still useful, as a more direct and simple way of handling asynchronous code. Don't  waste time trying to use promises everywhere, and instead use them where you can see an actual improvement.
 
 Also remember that is easier \(and cleaner\) to wrap a Promise around a callback than the other way around. So usually external interfaces \(e.g. the API of a library\) are still callbacks-based instead of promises, even if promises are being used internally.
 

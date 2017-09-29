@@ -106,7 +106,7 @@ The `catch` block will be called if:
 
 Note how we are not storing the promise anymore, we can easily concatenate then and catch blocks, as those also return promises.
 
-> **Pro tip: **promise.catch\(...\) can also be used standalone, but in this case it won't be executed if an error is thrown inside the _then_ block, to provide a proper error handling, then...catch should be used as described before.
+> **Pro tip: **promise.catch\(...\) can also be used standalone, but in this case it won't be executed if an error is thrown inside the _then_ block, to provide a consistent error handling,  I recommend using then...catch as described before.
 
 ### Advanced usage
 
@@ -177,9 +177,9 @@ As you can see, not only you end up with a much more messy code, with nested cal
 
 > **Pro Tip:** Inside a then block, you can either return a Promise or a variable, if the returning value is a Promise, it will automatically be resolved, and the result will be returned.
 >
-> **Pro Tip 2: **If a Promise is resolved before the `then` block is declared, don\`t worry, the "resolved" state is stored, and then will be executed immediately when then is declared
+> **Pro Tip 2: **If a Promise is resolved before the `then` block is declared, don\`t worry, the "resolved" state is stored, and the then block will be executed immediately when is declared.
 >
-> **Pro Tip 3:** A Promise can have multiple `then` and `catch` blocks, and they could be executed multiple times, but it is not recommended, as doing so will contribute to confusion, anarchy, and kitten sacrifices. We don't want to sacrifice kittens, you monster.
+> **Pro Tip 3:** A Promise can have multiple `then` and `catch` blocks, and they could be executed multiple times, but it is not recommended, as doing so will contribute to confusion, anarchy, and kittens sacrifices. We don't want to sacrifice kittens, you monster.
 
 **Promise.all**
 

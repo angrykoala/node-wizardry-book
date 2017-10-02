@@ -141,23 +141,25 @@ fs.watch("my/path", (eventType, filename)=>{
 });
 ```
 
-The method `watchFile` does the same, but attached to a single file. 
-
-
+The method `watchFile` does the same, but attached to a single file.
 
 > You can check the full documentation of the fs module here: [https://nodejs.org/api/fs.html](https://nodejs.org/api/fs.html)
 
 ### http
 
+> TODO
 
+
+
+> You can check the full documentation of the http module here: [https://nodejs.org/api/http.html](https://nodejs.org/api/http.html)
 
 ### path and url
 
 The `path` module provides a simple interface to manipulate OS paths \(e.g `/home` or `C:/`\) so you don't need to directly manipulate strings for paths. The interface to generate paths is the same regardless of the underlying operating system, so by using this module instead of strings your application will work almost the same way in Windows, Linux and OSX without making any modifications.
 
 > TODO: list methods and examples here
->
-> When
+
+> You can check the full documentation of the path module here: [https://nodejs.org/api/path.html](https://nodejs.org/api/path.html)
 
 The `url` module provides a similar interface, this time to handle url directions such as `192.1.1.0` or `localhost:3131`. It is particularly useful for server applications.
 
@@ -165,11 +167,13 @@ The `url` module provides a similar interface, this time to handle url direction
 
 ### utils
 
-
-
-
-
 ## process variable
+
+
+
+
+
+> The latest documentation of these modules is in [https://nodejs.org/api](https://nodejs.org/api)
 
 
 

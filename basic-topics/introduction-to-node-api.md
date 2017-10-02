@@ -147,9 +147,12 @@ The method `watchFile` does the same, but attached to a single file.
 
 ### http
 
-> TODO
+There are several frameworks and libraries in Node.js to help you handle anything related to web servers and http requests. But in the end most of them use the _http_ built-in package. While it is recommended to use a framework for most use cases, the _http_ package is still very powerful and quite useful. Here we will only cover some basics.
+
+**Creating an http server**
 
 
+**Making requests**
 
 > You can check the full documentation of the http module here: [https://nodejs.org/api/http.html](https://nodejs.org/api/http.html)
 

@@ -157,13 +157,56 @@ The method `watchFile` does the same, but attached to a single file.
 
 The `path` module provides a simple interface to manipulate OS paths \(e.g `/home` or `C:/`\) so you don't need to directly manipulate strings for paths. The interface to generate paths is the same regardless of the underlying operating system, so by using this module instead of strings your application will work almost the same way in Windows, Linux and OSX without making any modifications.
 
-> TODO: list methods and examples here
+
+**Formatting paths**   
+The following methods ease the creation of paths, regardless of the platform:
+
+* `path.join`: Given multiple strings, generates a path combining all of them, solving for relative paths
+
+```js
+const path=require('path');
+path.join("my","folder"); // "my/folder" in Linux
+path.join("/my/folder","inside",".."); // "/my/folder" in Linux
+```
+
+* `path.relative(from, to)`: Gives the relative path between 2 paths
+
+```js
+path.relative("folder","folder/inside.txt"); // "inside.txt"
+path.relative("/", "."); // "home/angrykoala/folder/current_folder"
+```
+
+**Parse paths**
+The path module also allows you to extract information from a path without manually handling strings
+* `path.parse`: Given a path, `parse` returns an object with information about it.
+```js
+path.parse("path/to/file.txt");
+/*{
+ root: '',
+ dir: 'path/to',
+ base: 'file.txt',
+ ext: '.txt',
+ name: 'file'
+}*/
+```
+
+Instead of doing the whole parse of the path, a few specific methods exists:
+```js
+const myPath="path/to/file.txt";
+path.basename(myPath); // "file.txt"
+path.dirname(myPath); // "path/to"
+path.extname(myPath); // "-txt"
+```
+
+> Remember `__dirname` contains the path of the file being executed. Instead of concatenating (`__dirname+/local/path`), it is better to use `path.join(__dirname, "local/path")`
 
 > You can check the full documentation of the path module here: [https://nodejs.org/api/path.html](https://nodejs.org/api/path.html)
 
 The `url` module provides a similar interface, this time to handle url directions such as `192.1.1.0` or `localhost:3131`. It is particularly useful for server applications.
 
 > TODO: list methods and examples here
+
+> You can check the full documentation of the path module here: [https://nodejs.org/api/url.html](https://nodejs.org/api/url.html)
 
 ### utils
 
@@ -174,6 +217,3 @@ The `url` module provides a similar interface, this time to handle url direction
 
 
 > The latest documentation of these modules is in [https://nodejs.org/api](https://nodejs.org/api)
-
-
-

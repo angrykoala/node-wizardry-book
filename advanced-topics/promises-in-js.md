@@ -138,7 +138,7 @@ readProcessAndSendData(myUser, myPath).then(()=>{
  });
 ```
 
-As you can see, returning a Promise inside a Promise will automatically be handled, and is no need to use `then` for `sendProcessedData`, finally we don't have to care about errors, as all the thrown errors and rejected promises will be caught in the last catch block.
+As you can see, returning a Promise inside a Promise will automatically be handled, and there is no need to use `then` for `sendProcessedData`, finally we don't have to care about errors, as all the thrown errors and rejected promises will be caught in the last catch block.
 
 Compare the previous example with the same code using a callback-based interface:
 
@@ -201,9 +201,9 @@ sendEmailsTo(["user1@mail.com","user2@mail.com"]).then(()=>{
 });
 ```
 
-This examples uses `map` to generate an array of all the promises resulting after executing `sendEmail` with each user, `Promise.all` expects an array of promises, so this pattern is quite handy. It will return a promise that will be resolved when all the promises in the array are resolved.
+This examples uses `map` to generate an array of all the promises returned after executing `sendEmail` with each user, `Promise.all` expects an array of promises, so this pattern is quite handy. It will return a promise that will be resolved when all the promises in the array are resolved.
 
-As you can imagine, `Promise.all` will result in a rejected promise if _any_ of the promises fail. This can be changed if we add a catch block to each promise inside `sendEmail` \(or using then...catch instead of returning sendEmail directly\)
+As you can imagine, `Promise.all` will result in a rejected promise if _any_ of the promises fail. This can be changed if we add a catch block to each promise inside `sendEmail` \(or using `then...catch` instead of returning sendEmail directly\)
 
 **Promise.resolve** and **Promise.reject**
 

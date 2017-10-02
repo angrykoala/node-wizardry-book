@@ -25,6 +25,7 @@
 * [Testing](advanced-topics/testing.md)
 * [Package versioning](advanced-topics/package-versioning.md)
 * [JS Performance and Garbage Collector](advanced-topics/js-performance-and-garbage-collector.md)
+* Useful packages
 
 ## Bibliography
 

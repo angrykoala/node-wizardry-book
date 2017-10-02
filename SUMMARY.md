@@ -15,17 +15,15 @@
 ## Projects
 
 * [Creating your first project](projects/creating-your-first-project.md)
+* [Let's write a proper server](projects/lets-write-a-proper-server.md)
 * [Chat App with websockets](projects/chat-app-with-websockets.md)
 * [Desktop application with Electron](projects/desktop-application-with-electron.md)
-* [Let's write a proper server](projects/lets-write-a-proper-server.md)
 
 ## Advanced Topics
 
-* [Working with several node versions](advanced-topics/working-with-several-node-versions.md)
 * [Managing your project](advanced-topics/managing-your-project.md)
 * [Promises in JS](advanced-topics/promises-in-js.md)
-* [Package versioning](advanced-topics/package-versioning.md)
 * [Testing](advanced-topics/testing.md)
+* [Package versioning](advanced-topics/package-versioning.md)
 * [JS Performance and Garbage Collector](advanced-topics/js-performance-and-garbage-collector.md)
-* Node.js development using Git
 

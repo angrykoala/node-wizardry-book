@@ -3,7 +3,6 @@
 ## Introduction
 
 * [Introduction](README.md)
-* [Bibliography](bibliography.md)
 
 ## Basic Topics
 
@@ -26,4 +25,8 @@
 * [Testing](advanced-topics/testing.md)
 * [Package versioning](advanced-topics/package-versioning.md)
 * [JS Performance and Garbage Collector](advanced-topics/js-performance-and-garbage-collector.md)
+
+## Bibliography
+
+* [Bibliography](bibliography.md)
 

@@ -202,9 +202,37 @@ path.extname(myPath); // "-txt"
 
 > You can check the full documentation of the path module here: [https://nodejs.org/api/path.html](https://nodejs.org/api/path.html)
 
-The `url` module provides a similar interface, this time to handle url directions such as `192.1.1.0` or `localhost:3131`. It is particularly useful for server applications.
+The `url` module provides similar features, this time to handle url directions such as `192.1.1.0` or `localhost:3131`. It is particularly useful for web applications.
 
-> TODO: list methods and examples here
+**URL object**
+The URL class defines an URL and allows you to access to its metadata:
+```js
+const URL=require('url').URL;
+
+const my_url=new URL("api", "http://foo.bar"); // Same as new URL( "http://foo.bar/api")
+
+my_url.host; // "http://foo.bar"
+my_url.hostname; // "foo.bar"
+my_url.pathname; // "api"
+```
+Basically, it allows you to easily parse all the data from a URL (including queries, port,...) from the raw string.
+
+* `url.format`: Given an URL object, returns the string with the url properly formatted.
+```js
+const url=require('url');
+const URL=url.URL;
+
+const my_url=new URL("api", "http://foo.bar");
+url.format(my_url); // "http://foo.bar/api"
+```
+
+
+* `url.resolve`: Allows you to resolve a relative url from a given base url
+
+```js
+url.resolve("http://foo.bar/index.html", "api"); // http://foo.bar/api
+```
+Note how only the base (`http://foo.bar/`) was used, the index.html was stripped. In this example no URL objects are used.
 
 > You can check the full documentation of the path module here: [https://nodejs.org/api/url.html](https://nodejs.org/api/url.html)
 

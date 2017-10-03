@@ -147,12 +147,35 @@ The method `watchFile` does the same, but attached to a single file.
 
 ### http
 
-There are several frameworks and libraries in Node.js to help you handle anything related to web servers and http requests. But in the end most of them use the _http_ built-in package. While it is recommended to use a framework for most use cases, the _http_ package is still very powerful and quite useful. Here we will only cover some basics.
-
-**Creating an http server**
-
+There are several frameworks and libraries in Node.js to help you handle anything related to web servers and http requests. But in the end most of them use the _http_ built-in package. While it is recommended to use a framework for most use cases, the _http_ package is still very powerful and quite useful. Here we will only cover some basics on how to make http requests, as in the [first project](projects/creating-your-first-project.md) we will use this module to build a server from scratch.
 
 **Making requests**
+* `http.request` allows you to make http requests with a wide range of options:
+
+```js
+const http = require('http');
+
+const req = http.request({
+    hostname: 'www.my_host.host',
+    path: '/my/path',
+    method: 'POST',
+}, (res) => {
+    res.setEncoding('utf8');
+    res.on('data', (chunk) => {
+        console.log(chunk);
+    });
+    res.on('end', () => {
+        console.log('No more data');
+    });
+});
+
+req.end();
+```
+
+Http is quite a primitive way of performing request, allowing you to manage things like encoding, headers or chunks of data received. This is why, like http servers, most day-to-day applications that require requests use third party libraries built on top of the bare http module.
+
+* `http.get` is a convenience method to perform _GET_ requests without bodies.
+
 
 > You can check the full documentation of the http module here: [https://nodejs.org/api/http.html](https://nodejs.org/api/http.html)
 

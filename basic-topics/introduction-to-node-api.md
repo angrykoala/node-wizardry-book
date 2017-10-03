@@ -262,12 +262,6 @@ Note how only the base (`http://foo.bar/`) was used, the index.html was stripped
 
 > You can check the full documentation of the path module here: [https://nodejs.org/api/url.html](https://nodejs.org/api/url.html)
 
-### utils
-
-## process variable
-
-
-
 
 
 > The latest documentation of these modules is in [https://nodejs.org/api](https://nodejs.org/api)
